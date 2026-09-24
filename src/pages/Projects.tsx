@@ -8,11 +8,7 @@ export function ProjectsPage() {
     <>
       <PageHero
         eyebrow="Selected Works"
-        title={
-          <>
-            Work we&rsquo;re <em className="italic text-bronze">proud of.</em>
-          </>
-        }
+        title="Work we're proud of."
         sub="A few of the homes and spaces we've shaped across Kerala and India — each one designed to live beautifully."
       />
       <Projects />

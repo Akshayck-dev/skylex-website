@@ -30,19 +30,19 @@ export function CTA() {
       <div className="relative z-10 mx-auto max-w-shell px-6 py-32 text-center md:px-10 md:py-44 lg:px-16">
         <Reveal>
           <h2 className="mx-auto max-w-4xl font-display text-5xl font-medium leading-[1.05] tracking-tight text-cream text-balance md:text-7xl">
-            Let&rsquo;s create something
+            Have a plot, a plan — or just an idea?
             <br />
-            <em className="italic text-bronze">worth coming home to.</em>
+            Let&rsquo;s talk about what we can build together.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-cream/75 md:text-lg">
-            Have a project in mind? Tell us about it.
+            Have a project in mind? Tell us where it stands.
           </p>
         </Reveal>
         <Reveal delay={0.18}>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Button variant="bronze" size="lg" onClick={() => navigate("/contact")}>
+            <Button variant="clay" size="lg" onClick={() => navigate("/contact")}>
               Start a Project
               <ArrowRight aria-hidden="true" />
             </Button>

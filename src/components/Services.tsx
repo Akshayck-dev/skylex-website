@@ -16,7 +16,7 @@ export function Services() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <Reveal>
-              <Eyebrow>02 — Services</Eyebrow>
+              <Eyebrow>What we do</Eyebrow>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="mt-5 font-display text-5xl font-medium tracking-tight text-charcoal md:text-6xl lg:text-7xl">
@@ -52,7 +52,7 @@ export function Services() {
                   <span
                     className={cn(
                       "font-display text-lg italic transition-colors duration-500 md:text-xl",
-                      isActive ? "text-bronze" : "text-stone"
+                      isActive ? "text-clay" : "text-stone"
                     )}
                   >
                     {service.index}
@@ -104,7 +104,7 @@ export function Services() {
                     className={cn(
                       "flex h-14 w-14 items-center justify-center rounded-full border transition-all duration-500",
                       isActive
-                        ? "border-bronze bg-bronze text-cream"
+                        ? "border-clay bg-clay text-cream"
                         : "border-charcoal/25 text-charcoal/60"
                     )}
                   >

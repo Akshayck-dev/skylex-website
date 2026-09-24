@@ -26,11 +26,11 @@ export function Contact() {
           {/* Left — intro + details */}
           <div className="lg:col-span-5">
             <Reveal>
-              <Eyebrow>08 — Contact</Eyebrow>
+              <Eyebrow>Get in touch</Eyebrow>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="mt-5 font-display text-5xl font-medium leading-[1.05] tracking-tight text-charcoal text-balance md:text-6xl">
-                Start a <em className="italic text-bronze">conversation.</em>
+                Start a <em className="italic text-clay">conversation.</em>
               </h2>
             </Reveal>
             <Reveal delay={0.14}>
@@ -43,7 +43,7 @@ export function Contact() {
             <Reveal delay={0.2}>
               <dl className="mt-12 space-y-8">
                 <div className="flex gap-5">
-                  <MapPin className="mt-0.5 size-5 shrink-0 text-bronze" aria-hidden="true" />
+                  <MapPin className="mt-0.5 size-5 shrink-0 text-clay" aria-hidden="true" />
                   <div>
                     <dt className="text-[11px] font-medium uppercase tracking-[0.28em] text-stone">
                       Studio
@@ -52,7 +52,7 @@ export function Contact() {
                   </div>
                 </div>
                 <div className="flex gap-5">
-                  <Mail className="mt-0.5 size-5 shrink-0 text-bronze" aria-hidden="true" />
+                  <Mail className="mt-0.5 size-5 shrink-0 text-clay" aria-hidden="true" />
                   <div>
                     <dt className="text-[11px] font-medium uppercase tracking-[0.28em] text-stone">
                       Email
@@ -60,7 +60,7 @@ export function Contact() {
                     <dd className="mt-1.5 text-[17px]">
                       <a
                         href={`mailto:${CONTACT.email}`}
-                        className="text-charcoal underline-offset-4 transition-colors hover:text-bronze hover:underline"
+                        className="text-charcoal underline-offset-4 transition-colors hover:text-clay hover:underline"
                       >
                         {CONTACT.email}
                       </a>
@@ -68,7 +68,7 @@ export function Contact() {
                   </div>
                 </div>
                 <div className="flex gap-5">
-                  <Phone className="mt-0.5 size-5 shrink-0 text-bronze" aria-hidden="true" />
+                  <Phone className="mt-0.5 size-5 shrink-0 text-clay" aria-hidden="true" />
                   <div>
                     <dt className="text-[11px] font-medium uppercase tracking-[0.28em] text-stone">
                       Phone
@@ -94,7 +94,7 @@ export function Contact() {
                       className="flex min-h-[420px] flex-col items-center justify-center text-center"
                       role="status"
                     >
-                      <CheckCircle2 className="size-12 text-bronze" aria-hidden="true" />
+                      <CheckCircle2 className="size-12 text-clay" aria-hidden="true" />
                       <h3 className="mt-6 font-display text-4xl font-medium tracking-tight text-charcoal">
                         Thank you.
                       </h3>

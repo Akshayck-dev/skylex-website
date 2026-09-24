@@ -9,11 +9,11 @@ export function WhyChooseUs() {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
               <Reveal>
-                <Eyebrow>05 — Why Skylex</Eyebrow>
+                <Eyebrow>Why Skylex</Eyebrow>
               </Reveal>
               <Reveal delay={0.08}>
                 <h2 className="mt-5 font-display text-5xl font-medium leading-[1.05] tracking-tight text-charcoal text-balance md:text-6xl">
-                  Built with <em className="italic text-bronze">intention.</em>
+                  Built with intention.
                 </h2>
               </Reveal>
               <Reveal delay={0.14}>
@@ -30,7 +30,7 @@ export function WhyChooseUs() {
               {PRINCIPLES.map((principle, i) => (
                 <Reveal key={principle.index} delay={i * 0.06}>
                   <div className="group grid grid-cols-12 items-start gap-4 border-b border-charcoal/15 py-9 transition-all duration-500 hover:bg-cream/60 md:py-11">
-                    <span className="col-span-2 font-display text-lg italic text-stone transition-colors duration-500 group-hover:text-bronze md:col-span-1">
+                    <span className="col-span-2 font-display text-lg italic text-stone transition-colors duration-500 group-hover:text-clay md:col-span-1">
                       {principle.index}
                     </span>
                     <div className="col-span-10 md:col-span-11 md:pl-4">

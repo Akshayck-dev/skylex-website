@@ -8,11 +8,11 @@ export default {
         cream: "#F7F6F2",
         beige: "#E9E4DA",
         stone: "#8A8780",
-        bronze: "#A8895B",
+        clay: "#B0512C",
       },
       fontFamily: {
-        display: ['"Cormorant Garamond"', "Georgia", "serif"],
-        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        display: ['"Fraunces"', "Georgia", "serif"],
+        sans: ["Manrope", "system-ui", "-apple-system", "sans-serif"],
       },
       maxWidth: {
         shell: "1400px",

@@ -13,17 +13,17 @@ interface PageHeroProps {
 export function PageHero({ eyebrow, title, sub }: PageHeroProps) {
   return (
     <section className="relative overflow-hidden bg-charcoal pt-40 pb-20 md:pt-52 md:pb-28">
-      {/* soft bronze glow */}
+      {/* soft clay glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[820px] -translate-x-1/2 rounded-full bg-bronze/15 blur-[140px]"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[820px] -translate-x-1/2 rounded-full bg-clay/15 blur-[140px]"
       />
       <div className="relative mx-auto max-w-shell px-6 md:px-10 lg:px-16">
         <motion.p
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="text-[11px] font-medium uppercase tracking-[0.34em] text-bronze"
+          className="text-[11px] font-medium uppercase tracking-[0.34em] text-clay"
         >
           {eyebrow}
         </motion.p>

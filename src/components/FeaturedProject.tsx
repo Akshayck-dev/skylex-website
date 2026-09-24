@@ -72,7 +72,7 @@ export function FeaturedProject() {
             >
               View Case Study
               <ArrowRight
-                className="size-4 text-bronze transition-transform duration-300 group-hover:translate-x-1"
+                className="size-4 text-clay transition-transform duration-300 group-hover:translate-x-1"
                 aria-hidden="true"
               />
             </MotionLink>

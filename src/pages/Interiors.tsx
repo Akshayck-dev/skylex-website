@@ -7,12 +7,7 @@ export function InteriorsPage() {
     <>
       <PageHero
         eyebrow="Interiors"
-        title={
-          <>
-            Rooms with a<br />
-            <em className="italic text-bronze">point of view.</em>
-          </>
-        }
+        title="Rooms with a point of view."
         sub="Interiors that feel personal — layered with texture, light and materials chosen for the way you actually live."
       />
       <Interiors />

@@ -41,7 +41,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       to={link.href}
-                      className="text-[15px] text-cream/70 transition-colors duration-300 hover:text-bronze"
+                      className="text-[15px] text-cream/70 transition-colors duration-300 hover:text-clay"
                     >
                       {link.label}
                     </Link>
@@ -60,7 +60,7 @@ export function Footer() {
               <p className="mt-6 text-[15px] text-cream/70">{CONTACT.studio}</p>
               <a
                 href={`mailto:${CONTACT.email}`}
-                className="mt-2 block text-[15px] text-cream/70 transition-colors duration-300 hover:text-bronze"
+                className="mt-2 block text-[15px] text-cream/70 transition-colors duration-300 hover:text-clay"
               >
                 {CONTACT.email}
               </a>
@@ -72,7 +72,7 @@ export function Footer() {
                     key={label}
                     href={href}
                     aria-label={`Skylex on ${label}`}
-                    className="group inline-flex items-center gap-1.5 text-[13px] font-medium uppercase tracking-[0.22em] text-cream/70 transition-colors duration-300 hover:text-bronze"
+                    className="group inline-flex items-center gap-1.5 text-[13px] font-medium uppercase tracking-[0.22em] text-cream/70 transition-colors duration-300 hover:text-clay"
                   >
                     {label}
                     <ArrowUpRight

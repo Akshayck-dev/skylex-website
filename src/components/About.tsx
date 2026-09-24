@@ -8,16 +8,16 @@ export function About() {
     <section id="about" className="scroll-mt-24 bg-cream py-28 md:py-40">
       <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
         <Reveal>
-          <Eyebrow>01 — About Us</Eyebrow>
+          <Eyebrow>About us</Eyebrow>
         </Reveal>
 
         <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-7">
             <Reveal delay={0.05}>
               <h2 className="font-display text-5xl font-medium leading-[1.04] tracking-tight text-charcoal text-balance md:text-6xl lg:text-[4.6rem]">
-                We don&rsquo;t just build spaces.
+                Engineers by training.
                 <br />
-                <em className="italic text-bronze">We shape experiences.</em>
+                Designers at heart.
               </h2>
             </Reveal>
           </div>
@@ -43,7 +43,7 @@ export function About() {
                     key={item}
                     className="flex items-center gap-4 border-b border-charcoal/15 py-4"
                   >
-                    <span className="h-1.5 w-1.5 bg-bronze" aria-hidden="true" />
+                    <span className="h-1.5 w-1.5 bg-clay" aria-hidden="true" />
                     <span className="text-[13px] font-medium uppercase tracking-[0.24em] text-charcoal">
                       {item}
                     </span>

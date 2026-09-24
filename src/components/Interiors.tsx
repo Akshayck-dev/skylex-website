@@ -38,11 +38,11 @@ export function Interiors() {
           {/* Content */}
           <div className="lg:col-span-5 lg:col-start-8">
             <Reveal>
-              <Eyebrow>04 — Interiors</Eyebrow>
+              <Eyebrow>Interiors</Eyebrow>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="mt-5 font-display text-5xl font-medium leading-[1.05] tracking-tight text-charcoal text-balance md:text-6xl">
-                Interiors with <em className="italic text-bronze">Character.</em>
+                Interiors with <em className="italic text-clay">Character.</em>
               </h2>
             </Reveal>
             <Reveal delay={0.14}>
@@ -66,7 +66,7 @@ export function Interiors() {
                   <span className="text-[13px] font-medium uppercase tracking-[0.24em] text-charcoal/75 transition-all duration-300 group-hover:translate-x-2 group-hover:text-charcoal">
                     {category}
                   </span>
-                  <span className="font-display text-sm italic text-stone transition-colors duration-300 group-hover:text-bronze">
+                  <span className="font-display text-sm italic text-stone transition-colors duration-300 group-hover:text-clay">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </motion.div>

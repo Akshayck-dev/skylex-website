@@ -8,13 +8,7 @@ export function ServicesPage() {
     <>
       <PageHero
         eyebrow="What We Do"
-        title={
-          <>
-            End-to-end design
-            <br />
-            <em className="italic text-bronze">&amp; build expertise.</em>
-          </>
-        }
+        title="End-to-end design and build, under one roof."
         sub="From the first sketch to the final handover — architecture, construction, interiors and turnkey delivery under one accountable roof."
       />
       <Services />

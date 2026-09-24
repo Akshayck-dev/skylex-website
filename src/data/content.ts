@@ -137,7 +137,7 @@ export const PROJECTS: Project[] = [
 ];
 
 export const FEATURED_PROJECT = {
-  eyebrow: "01 / Featured Project",
+  eyebrow: "Featured project",
   name: "Villa Aurelia",
   meta: "Contemporary Architecture · Kozhikode",
   image: IMAGES.featured,

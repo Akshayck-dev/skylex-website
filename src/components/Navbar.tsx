@@ -81,7 +81,7 @@ export function Navbar() {
                 )}
               >
                 {link.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-bronze transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-clay transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </nav>
@@ -143,10 +143,10 @@ export function Navbar() {
                   transition={{ duration: 0.5, ease: EASE, delay: 0.1 + i * 0.06 }}
                   className="group flex items-baseline gap-4 border-b border-cream/10 py-4"
                 >
-                  <span className="font-display text-sm italic text-bronze">
+                  <span className="font-display text-sm italic text-clay">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="font-display text-4xl font-medium tracking-tight transition-colors group-hover:text-bronze">
+                  <span className="font-display text-4xl font-medium tracking-tight transition-colors group-hover:text-clay">
                     {link.label}
                   </span>
                 </MotionLink>
@@ -159,7 +159,7 @@ export function Navbar() {
               className="px-8 pb-12"
             >
               <Button
-                variant="bronze"
+                variant="clay"
                 size="lg"
                 className="w-full"
                 onClick={() => {

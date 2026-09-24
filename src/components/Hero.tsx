@@ -64,22 +64,22 @@ export function Hero() {
             variants={item}
             className="mt-6 max-w-4xl font-display text-[13vw] font-medium leading-[0.98] tracking-tight text-cream text-balance sm:text-7xl md:text-8xl lg:text-[7.5rem]"
           >
-            Spaces Designed
+            Homes designed with intent,
             <br />
-            to Live <em className="italic text-bronze">Beautifully.</em>
+            built to last.
           </motion.h1>
 
           <motion.p
             variants={item}
             className="mt-7 max-w-xl text-base leading-relaxed text-cream/75 md:text-lg"
           >
-            We create thoughtfully designed homes, interiors and architectural
-            spaces where functionality meets timeless design.
+            Architecture, construction and interiors — shaped around light,
+            landscape and the way you live, and built by our own engineers.
           </motion.p>
 
           <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
             <Button
-              variant="bronze"
+              variant="clay"
               size="lg"
               onClick={() => navigate("/projects")}
             >
@@ -104,7 +104,7 @@ export function Hero() {
         transition={{ duration: 1, delay: 1.4 }}
         className="absolute bottom-8 left-6 z-10 hidden items-center gap-2 text-cream/70 md:left-10 md:flex lg:left-16"
       >
-        <MapPin className="size-4 text-bronze" aria-hidden="true" />
+        <MapPin className="size-4 text-clay" aria-hidden="true" />
         <span className="text-[11px] font-medium uppercase tracking-[0.28em]">
           Based in Kerala · Serving Across India
         </span>
@@ -123,7 +123,7 @@ export function Hero() {
         </span>
         <div className="relative h-16 w-px overflow-hidden bg-cream/20">
           <motion.span
-            className="absolute left-0 top-0 h-1/2 w-px bg-bronze"
+            className="absolute left-0 top-0 h-1/2 w-px bg-clay"
             animate={{ y: ["-100%", "220%"] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           />

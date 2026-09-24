@@ -21,12 +21,12 @@ export function Testimonials() {
     <section className="bg-beige py-28 md:py-40" aria-label="Client testimonials">
       <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
         <Reveal>
-          <Eyebrow>07 — Testimonials</Eyebrow>
+          <Eyebrow>Kind words</Eyebrow>
         </Reveal>
 
         <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-12">
           <div className="lg:col-span-9">
-            <Quote className="size-10 text-bronze" aria-hidden="true" />
+            <Quote className="size-10 text-clay" aria-hidden="true" />
             <div className="relative mt-6 min-h-[240px] md:min-h-[220px]">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.figure

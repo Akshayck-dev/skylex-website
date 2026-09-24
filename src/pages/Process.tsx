@@ -8,13 +8,7 @@ export function ProcessPage() {
     <>
       <PageHero
         eyebrow="How We Work"
-        title={
-          <>
-            A clear path from
-            <br />
-            <em className="italic text-bronze">idea to handover.</em>
-          </>
-        }
+        title="A clear path from idea to handover."
         sub="Five considered steps. One accountable team. You'll always know what's happening, what's next, and what it costs."
       />
       <Process />

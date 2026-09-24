@@ -6,13 +6,7 @@ export function ContactPage() {
     <>
       <PageHero
         eyebrow="Get In Touch"
-        title={
-          <>
-            Let&rsquo;s talk about
-            <br />
-            <em className="italic text-bronze">your project.</em>
-          </>
-        }
+        title="Let's talk about your project."
         sub="Tell us a little about what you're dreaming of — we'll take it from there."
       />
       <Contact />

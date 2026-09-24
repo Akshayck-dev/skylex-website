@@ -43,7 +43,7 @@ function ProjectCard({ project }: { project: Project }) {
         {/* Details */}
         <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
           <div className="translate-y-2 transition-transform duration-500 group-hover:translate-y-0">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-bronze">
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-clay">
               {project.category} · {project.year}
             </p>
             <h3 className="mt-2 font-display text-3xl font-medium tracking-tight text-cream md:text-4xl">
@@ -66,7 +66,7 @@ export function Projects() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <Reveal>
-              <Eyebrow>03 — Portfolio</Eyebrow>
+              <Eyebrow>Selected works</Eyebrow>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="mt-5 font-display text-5xl font-medium tracking-tight text-charcoal md:text-6xl lg:text-7xl">
@@ -97,7 +97,7 @@ export function Projects() {
           >
             View All Projects
             <ArrowRight
-              className="size-4 text-bronze transition-transform duration-300 group-hover:translate-x-1"
+              className="size-4 text-clay transition-transform duration-300 group-hover:translate-x-1"
               aria-hidden="true"
             />
           </MotionLink>

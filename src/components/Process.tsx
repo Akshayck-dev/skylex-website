@@ -10,7 +10,7 @@ export function Process() {
       <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
         <div className="max-w-2xl">
           <Reveal>
-            <Eyebrow>06 — Process</Eyebrow>
+            <Eyebrow>How we work</Eyebrow>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="mt-5 font-display text-5xl font-medium tracking-tight text-charcoal md:text-6xl lg:text-7xl">
@@ -33,7 +33,7 @@ export function Process() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 1.6, ease: EASE }}
-            className="absolute left-0 right-0 top-[7px] h-px origin-left bg-bronze"
+            className="absolute left-0 right-0 top-[7px] h-px origin-left bg-clay"
             aria-hidden="true"
           />
           <ol className="grid grid-cols-5 gap-8">
@@ -47,7 +47,7 @@ export function Process() {
                 className="relative pt-10"
               >
                 <span
-                  className="absolute left-0 top-[3px] h-[9px] w-[9px] rotate-45 bg-bronze"
+                  className="absolute left-0 top-[3px] h-[9px] w-[9px] rotate-45 bg-clay"
                   aria-hidden="true"
                 />
                 <p className="font-display text-sm italic text-stone">{step.index}</p>
@@ -75,7 +75,7 @@ export function Process() {
               className="relative pb-10 pl-10 last:pb-0"
             >
               <span
-                className="absolute left-[1px] top-1.5 h-[9px] w-[9px] rotate-45 bg-bronze"
+                className="absolute left-[1px] top-1.5 h-[9px] w-[9px] rotate-45 bg-clay"
                 aria-hidden="true"
               />
               <p className="font-display text-sm italic text-stone">{step.index}</p>

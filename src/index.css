@@ -2,57 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Self-hosted fonts */
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("./assets/fonts/cormorantgaramond-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("./assets/fonts/cormorantgaramond-600.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("./assets/fonts/cormorantgaramond-700.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: italic;
-  font-weight: 500;
-  font-display: swap;
-  src: url("./assets/fonts/cormorantgaramond-500-italic.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./assets/fonts/inter-400.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("./assets/fonts/inter-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("./assets/fonts/inter-600.woff2") format("woff2");
-}
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -64,12 +13,12 @@
   }
 
   ::selection {
-    background: #a8895b;
+    background: #b0512c;
     color: #f7f6f2;
   }
 
   :focus-visible {
-    outline: 2px solid #a8895b;
+    outline: 2px solid #b0512c;
     outline-offset: 3px;
   }
 }
@@ -91,6 +40,6 @@
     border-radius: 0;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #a8895b;
+    background: #b0512c;
   }
 }

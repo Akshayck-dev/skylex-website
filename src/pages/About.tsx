@@ -9,13 +9,7 @@ export function AboutPage() {
     <>
       <PageHero
         eyebrow="The Studio"
-        title={
-          <>
-            Driven by engineers.
-            <br />
-            <em className="italic text-bronze">Built for excellence.</em>
-          </>
-        }
+        title="Driven by engineers. Built for excellence."
         sub="Skylex Engineering Solutions is a Kerala-based architecture, construction and interiors studio — a team of engineers and designers obsessed with getting the details right."
       />
       <About />
