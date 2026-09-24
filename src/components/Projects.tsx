@@ -1,14 +1,17 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PROJECTS, type Project } from "../data/content";
 import { cn } from "../lib/utils";
 import { Eyebrow, Reveal } from "./shared";
 
+const MotionLink = motion(Link);
+
 function ProjectCard({ project }: { project: Project }) {
   return (
     <Reveal className={cn(project.span)}>
-      <a
-        href="#contact"
+      <Link
+        to="/contact"
         className="group relative block overflow-hidden bg-charcoal"
         aria-label={`${project.name} — ${project.location}`}
       >
@@ -51,7 +54,7 @@ function ProjectCard({ project }: { project: Project }) {
             </p>
           </div>
         </div>
-      </a>
+      </Link>
     </Reveal>
   );
 }
@@ -86,8 +89,8 @@ export function Projects() {
         </div>
 
         <Reveal className="mt-14 flex justify-center md:justify-end">
-          <motion.a
-            href="#contact"
+          <MotionLink
+            to="/projects"
             whileHover={{ x: 6 }}
             transition={{ duration: 0.3 }}
             className="group inline-flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-charcoal"
@@ -97,7 +100,7 @@ export function Projects() {
               className="size-4 text-bronze transition-transform duration-300 group-hover:translate-x-1"
               aria-hidden="true"
             />
-          </motion.a>
+          </MotionLink>
         </Reveal>
       </div>
     </section>

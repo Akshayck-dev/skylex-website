@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { CONTACT, NAV_LINKS } from "../data/content";
 import { Reveal } from "./shared";
 
@@ -38,12 +39,12 @@ export function Footer() {
               <ul className="mt-6 space-y-3.5">
                 {NAV_LINKS.slice(0, 5).map((link) => (
                   <li key={link.href}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-[15px] text-cream/70 transition-colors duration-300 hover:text-bronze"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

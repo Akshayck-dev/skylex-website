@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { FEATURED_PROJECT } from "../data/content";
 import { Eyebrow, Reveal } from "./shared";
+
+const MotionLink = motion(Link);
 
 export function FeaturedProject() {
   const ref = useRef<HTMLElement>(null);
@@ -61,8 +64,8 @@ export function FeaturedProject() {
           </Reveal>
 
           <Reveal delay={0.24}>
-            <motion.a
-              href="#contact"
+            <MotionLink
+              to="/contact"
               whileHover={{ x: 6 }}
               transition={{ duration: 0.3 }}
               className="group mt-10 inline-flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-cream"
@@ -72,7 +75,7 @@ export function FeaturedProject() {
                 className="size-4 text-bronze transition-transform duration-300 group-hover:translate-x-1"
                 aria-hidden="true"
               />
-            </motion.a>
+            </MotionLink>
           </Reveal>
         </div>
       </div>

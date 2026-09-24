@@ -1,11 +1,13 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { IMAGES } from "../data/content";
 import { Reveal } from "./shared";
 import { Button } from "./ui/button";
 
 export function CTA() {
+  const navigate = useNavigate();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -40,11 +42,11 @@ export function CTA() {
         </Reveal>
         <Reveal delay={0.18}>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Button variant="bronze" size="lg" onClick={() => (window.location.hash = "#contact")}>
+            <Button variant="bronze" size="lg" onClick={() => navigate("/contact")}>
               Start a Project
               <ArrowRight aria-hidden="true" />
             </Button>
-            <Button variant="outlineLight" size="lg" onClick={() => (window.location.hash = "#contact")}>
+            <Button variant="outlineLight" size="lg" onClick={() => navigate("/contact")}>
               <Phone aria-hidden="true" />
               Talk to Our Team
             </Button>

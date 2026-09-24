@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { IMAGES } from "../data/content";
 import { Button } from "./ui/button";
 
@@ -17,6 +18,7 @@ const item = {
 };
 
 export function Hero() {
+  const navigate = useNavigate();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -79,7 +81,7 @@ export function Hero() {
             <Button
               variant="bronze"
               size="lg"
-              onClick={() => (window.location.hash = "#projects")}
+              onClick={() => navigate("/projects")}
             >
               Explore Projects
               <ArrowRight aria-hidden="true" />
@@ -87,7 +89,7 @@ export function Hero() {
             <Button
               variant="outlineLight"
               size="lg"
-              onClick={() => (window.location.hash = "#contact")}
+              onClick={() => navigate("/contact")}
             >
               Start Your Project
             </Button>
