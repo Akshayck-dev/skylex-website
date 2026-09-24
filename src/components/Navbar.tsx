@@ -2,13 +2,23 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NAV_LINKS } from "../data/content";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const MotionLink = motion(Link);
+
+/** Routes whose hero banner is dark — navbar starts in light mode there. */
+const DARK_HERO_ROUTES = new Set([
+  "/about",
+  "/services",
+  "/projects",
+  "/interiors",
+  "/process",
+  "/contact",
+]);
 
 function Wordmark({ light }: { light: boolean }) {
   return (
@@ -52,7 +62,9 @@ export function Navbar() {
     };
   }, [open ]);
 
-  const light = !scrolled && !open;
+  const { pathname } = useLocation();
+
+  const light = DARK_HERO_ROUTES.has(pathname) && !scrolled && !open;
 
   return (
     <>

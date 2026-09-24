@@ -1,55 +1,42 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { IMAGES } from "../data/content";
-import { Reveal } from "./shared";
-import { Button } from "./ui/button";
+import { CONTACT } from "../data/content";
+import { Eyebrow, Reveal } from "./shared";
 
+/** Typographic closing statement — no stock-photo band. */
 export function CTA() {
   const navigate = useNavigate();
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-charcoal" aria-label="Call to action">
-      <motion.div style={{ y: bgY }} className="absolute inset-0 scale-110" aria-hidden="true">
-        <img
-          src={IMAGES.cta}
-          alt=""
-          loading="lazy"
-          className="h-full w-full object-cover"
-        />
-      </motion.div>
-      <div className="absolute inset-0 bg-charcoal/55" aria-hidden="true" />
-
-      <div className="relative z-10 mx-auto max-w-shell px-6 py-32 text-center md:px-10 md:py-44 lg:px-16">
+    <section className="bg-charcoal py-28 md:py-44" aria-label="Call to action">
+      <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
         <Reveal>
-          <h2 className="mx-auto max-w-4xl font-display text-5xl font-medium leading-[1.05] tracking-tight text-cream text-balance md:text-7xl">
+          <Eyebrow light>Start a project</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <h2 className="mt-6 max-w-5xl font-display text-5xl font-medium leading-[1.02] tracking-tight text-cream text-balance md:text-8xl">
             Have a plot, a plan — or just an idea?
-            <br />
-            Let&rsquo;s talk about what we can build together.
           </h2>
         </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-cream/75 md:text-lg">
-            Have a project in mind? Tell us where it stands.
-          </p>
+        <Reveal delay={0.16}>
+          <button
+            onClick={() => navigate("/contact")}
+            className="group mt-12 inline-flex items-center gap-5"
+            aria-label="Start a project — go to contact page"
+          >
+            <span className="text-[13px] font-semibold uppercase tracking-[0.3em] text-cream">
+              Tell us where it stands
+            </span>
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-clay text-cream transition-transform duration-500 group-hover:scale-110 md:h-20 md:w-20">
+              <ArrowUpRight className="size-6 md:size-7" aria-hidden="true" />
+            </span>
+          </button>
         </Reveal>
-        <Reveal delay={0.18}>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Button variant="clay" size="lg" onClick={() => navigate("/contact")}>
-              Start a Project
-              <ArrowRight aria-hidden="true" />
-            </Button>
-            <Button variant="outlineLight" size="lg" onClick={() => navigate("/contact")}>
-              <Phone aria-hidden="true" />
-              Talk to Our Team
-            </Button>
+        <Reveal delay={0.22}>
+          <div className="mt-16 flex flex-wrap gap-x-12 gap-y-3 border-t border-cream/15 pt-8 text-[12px] font-medium uppercase tracking-[0.24em] text-cream/60 md:mt-24">
+            <span>{CONTACT.email}</span>
+            <span>{CONTACT.phone}</span>
+            <span>{CONTACT.studio}</span>
           </div>
         </Reveal>
       </div>

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { IMAGES } from "../data/content";
 import { Button } from "./ui/button";
@@ -9,11 +9,11 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.14, delayChildren: 0.5 } },
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.25 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 36 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
 };
 
@@ -24,109 +24,67 @@ export function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 0.7], ["0%", "30%"]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
-    <section ref={ref} id="home" className="relative flex min-h-[100svh] items-end overflow-hidden bg-charcoal">
-      {/* Background — slow cinematic zoom + parallax */}
-      <motion.div style={{ y: bgY }} className="absolute inset-0" aria-hidden="true">
-        <motion.img
-          src={IMAGES.hero}
-          alt=""
-          initial={{ scale: 1.12 }}
-          animate={{ scale: 1.22 }}
-          transition={{ duration: 28, ease: "linear" }}
-          className="h-full w-full object-cover"
-        />
-      </motion.div>
-      <div className="absolute inset-0 bg-charcoal/45" aria-hidden="true" />
-      <div
-        className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-charcoal/30"
-        aria-hidden="true"
-      />
-
-      {/* Content */}
-      <motion.div
-        style={{ opacity: contentOpacity, y: contentY }}
-        className="relative z-10 mx-auto w-full max-w-shell px-6 pb-28 pt-40 md:px-10 md:pb-32 lg:px-16"
-      >
+    <section ref={ref} className="bg-cream pt-28 md:pt-36">
+      <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
         <motion.div variants={container} initial="hidden" animate="visible">
-          <motion.p
+          {/* Meta rule */}
+          <motion.div
             variants={item}
-            className="text-[11px] font-medium uppercase tracking-[0.38em] text-cream/70"
+            className="flex items-center justify-between border-b border-charcoal/15 pb-5 text-[11px] font-medium uppercase tracking-[0.28em] text-stone"
           >
-            Architecture · Construction · Interiors
-          </motion.p>
+            <span>Architecture · Construction · Interiors</span>
+            <span className="hidden sm:block">Kerala, India</span>
+          </motion.div>
 
           <motion.h1
             variants={item}
-            className="mt-6 max-w-4xl font-display text-[13vw] font-medium leading-[0.98] tracking-tight text-cream text-balance sm:text-7xl md:text-8xl lg:text-[7.5rem]"
+            className="mt-10 font-display text-[12.5vw] font-medium leading-[0.95] tracking-tight text-charcoal text-balance sm:text-7xl md:text-8xl lg:text-[8.5rem]"
           >
-            Homes designed with intent,
-            <br />
-            built to last.
+            Homes designed with intent, built to last.
           </motion.h1>
 
-          <motion.p
+          <motion.div
             variants={item}
-            className="mt-7 max-w-xl text-base leading-relaxed text-cream/75 md:text-lg"
+            className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
           >
-            Architecture, construction and interiors — shaped around light,
-            landscape and the way you live, and built by our own engineers.
-          </motion.p>
-
-          <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
-            <Button
-              variant="clay"
-              size="lg"
-              onClick={() => navigate("/projects")}
-            >
-              Explore Projects
-              <ArrowRight aria-hidden="true" />
-            </Button>
-            <Button
-              variant="outlineLight"
-              size="lg"
-              onClick={() => navigate("/contact")}
-            >
-              Start Your Project
-            </Button>
+            <p className="max-w-md text-base leading-relaxed text-charcoal/65 md:text-lg">
+              A Kerala-based studio of engineers and designers — taking homes
+              from first sketch to final handover, under one roof.
+            </p>
+            <div className="flex flex-wrap items-center gap-4">
+              <Button variant="clay" size="lg" onClick={() => navigate("/projects")}>
+                Explore Projects
+                <ArrowRight aria-hidden="true" />
+              </Button>
+              <Button variant="outline" size="lg" onClick={() => navigate("/contact")}>
+                Start Your Project
+              </Button>
+            </div>
           </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
 
-      {/* Bottom-left location */}
+      {/* Full-width image with parallax + caption */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.4 }}
-        className="absolute bottom-8 left-6 z-10 hidden items-center gap-2 text-cream/70 md:left-10 md:flex lg:left-16"
+        initial={{ opacity: 0, y: 64 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, ease: EASE, delay: 0.65 }}
+        className="mt-14 md:mt-20"
       >
-        <MapPin className="size-4 text-clay" aria-hidden="true" />
-        <span className="text-[11px] font-medium uppercase tracking-[0.28em]">
-          Based in Kerala · Serving Across India
-        </span>
-      </motion.div>
-
-      {/* Bottom-right scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.6 }}
-        className="absolute bottom-8 right-6 z-10 hidden flex-col items-center gap-3 md:right-10 md:flex lg:right-16"
-        aria-hidden="true"
-      >
-        <span className="text-[10px] font-medium uppercase tracking-[0.32em] text-cream/60 [writing-mode:vertical-rl]">
-          Scroll
-        </span>
-        <div className="relative h-16 w-px overflow-hidden bg-cream/20">
-          <motion.span
-            className="absolute left-0 top-0 h-1/2 w-px bg-clay"
-            animate={{ y: ["-100%", "220%"] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        <div className="relative overflow-hidden">
+          <motion.img
+            src={IMAGES.hero}
+            alt="Modern residence in Kochi designed and built by Skylex"
+            style={{ y: imgY }}
+            className="h-[62vh] w-full scale-[1.18] object-cover md:h-[80vh]"
           />
+        </div>
+        <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-4 text-[11px] font-medium uppercase tracking-[0.24em] text-stone md:px-10 lg:px-16">
+          <span>Modern Residence — Kochi</span>
+          <span>2025</span>
         </div>
       </motion.div>
     </section>
