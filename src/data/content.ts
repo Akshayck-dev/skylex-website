@@ -1,10 +1,10 @@
 export const IMAGES = {
-  hero: "/images/hero.jpg",
-  about: "/images/about.jpg",
-  interiorsMain: "/images/interiors-main.jpg",
-  interiorsAlt: "/images/interiors-alt.jpg",
-  cta: "/images/cta.jpg",
-  featured: "/images/featured.jpg",
+  hero: "images/hero.jpg",
+  about: "images/about.jpg",
+  interiorsMain: "images/interiors-main.jpg",
+  interiorsAlt: "images/interiors-alt.jpg",
+  cta: "images/cta.jpg",
+  featured: "images/featured.jpg",
 };
 
 export interface NavLink {
@@ -36,7 +36,7 @@ export const SERVICES: Service[] = [
     name: "Architecture",
     description:
       "Concept-driven architectural design — from site study and spatial planning to detailed working drawings, shaped around light, climate and context.",
-    image: "/images/service-architecture.jpg",
+    image: "images/service-architecture.jpg",
     imageAlt: "Minimal white concrete architecture",
   },
   {
@@ -44,7 +44,7 @@ export const SERVICES: Service[] = [
     name: "Construction",
     description:
       "End-to-end civil construction executed by our own engineering teams — structural precision, honest materials and uncompromising site supervision.",
-    image: "/images/service-construction.jpg",
+    image: "images/service-construction.jpg",
     imageAlt: "Concrete facade detail of a modern building",
   },
   {
@@ -52,7 +52,7 @@ export const SERVICES: Service[] = [
     name: "Interior Design",
     description:
       "Interiors composed around material, proportion and everyday rituals — bespoke furniture, layered lighting and finishes that age gracefully.",
-    image: "/images/service-interior.jpg",
+    image: "images/service-interior.jpg",
     imageAlt: "Elegant luxury living room interior",
   },
   {
@@ -60,7 +60,7 @@ export const SERVICES: Service[] = [
     name: "Turnkey Projects",
     description:
       "A single point of responsibility from first sketch to final handover — design, approvals, construction and interiors delivered as one seamless project.",
-    image: "/images/service-turnkey.jpg",
+    image: "images/service-turnkey.jpg",
     imageAlt: "Modern residence exterior at dusk",
   },
 ];
@@ -85,7 +85,7 @@ export const PROJECTS: Project[] = [
     location: "Kochi",
     category: "Residential",
     year: "2025",
-    image: "/images/project-1.jpg",
+    image: "images/project-1.jpg",
     imageAlt: "Modern residence exterior with clean lines",
     span: "md:col-span-7",
     aspect: "aspect-[4/3]",
@@ -96,7 +96,7 @@ export const PROJECTS: Project[] = [
     location: "Kozhikode",
     category: "Residential",
     year: "2024",
-    image: "/images/project-2.jpg",
+    image: "images/project-2.jpg",
     imageAlt: "Luxury villa with landscaped foreground",
     span: "md:col-span-5",
     aspect: "aspect-[4/5]",
@@ -107,7 +107,7 @@ export const PROJECTS: Project[] = [
     location: "Bengaluru",
     category: "Interior",
     year: "2025",
-    image: "/images/project-3.jpg",
+    image: "images/project-3.jpg",
     imageAlt: "Contemporary living room with designer furniture",
     span: "md:col-span-5",
     aspect: "aspect-[4/5]",
@@ -118,7 +118,7 @@ export const PROJECTS: Project[] = [
     location: "Thrissur",
     category: "Residential",
     year: "2023",
-    image: "/images/project-4.jpg",
+    image: "images/project-4.jpg",
     imageAlt: "Minimal residence facade in daylight",
     span: "md:col-span-7",
     aspect: "aspect-[4/3]",
@@ -129,7 +129,7 @@ export const PROJECTS: Project[] = [
     location: "Kochi",
     category: "Commercial",
     year: "2024",
-    image: "/images/project-5.jpg",
+    image: "images/project-5.jpg",
     imageAlt: "Premium commercial office interior",
     span: "md:col-span-12",
     aspect: "aspect-[21/9]",

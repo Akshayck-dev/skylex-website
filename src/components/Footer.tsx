@@ -17,7 +17,7 @@ export function Footer() {
           <div className="lg:col-span-5">
             <Reveal>
               <img
-                src="/logo.png"
+                src="logo.png"
                 alt="Skylex Engineering Solutions logo"
                 className="h-20 w-auto md:h-24"
                 loading="lazy"
