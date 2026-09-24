@@ -1,3 +1,17 @@
+export interface HeroSlide {
+  image: string;
+  name: string;
+  location: string;
+  year: string;
+}
+
+export const HERO_SLIDES: HeroSlide[] = [
+  { image: "images/hero.jpg", name: "Modern Residence", location: "Kochi", year: "2025" },
+  { image: "images/featured.jpg", name: "Villa Aurelia", location: "Kozhikode", year: "2024" },
+  { image: "images/project-3.jpg", name: "Contemporary Interior", location: "Bengaluru", year: "2025" },
+  { image: "images/project-2.jpg", name: "Luxury Villa", location: "Kozhikode", year: "2024" },
+];
+
 export const IMAGES = {
   hero: "images/hero.jpg",
   about: "images/about.jpg",

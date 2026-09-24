@@ -1,11 +1,13 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { IMAGES } from "../data/content";
+import { HERO_SLIDES } from "../data/content";
+import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+const AUTOPLAY_MS = 5200;
 
 const container = {
   hidden: {},
@@ -20,11 +22,35 @@ const item = {
 export function Hero() {
   const navigate = useNavigate();
   const ref = useRef<HTMLElement>(null);
+  const [index, setIndex] = useState(0);
+  const timer = useRef<number | null>(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const imgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const sliderY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+
+  const restart = useCallback(() => {
+    if (timer.current) window.clearInterval(timer.current);
+    timer.current = window.setInterval(() => {
+      setIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, AUTOPLAY_MS);
+  }, []);
+
+  useEffect(() => {
+    restart();
+    return () => {
+      if (timer.current) window.clearInterval(timer.current);
+    };
+  }, [restart]);
+
+  const go = (i: number) => {
+    setIndex(i);
+    restart();
+  };
+
+  const slide = HERO_SLIDES[index];
 
   return (
     <section ref={ref} className="bg-cream pt-28 md:pt-36">
@@ -67,24 +93,73 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Full-width image with parallax + caption */}
+      {/* Autoplay slider */}
       <motion.div
         initial={{ opacity: 0, y: 64 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.1, ease: EASE, delay: 0.65 }}
-        className="mt-14 md:mt-20"
+        className="mx-auto mt-14 max-w-shell px-6 md:mt-20 md:px-10 lg:px-16"
       >
-        <div className="relative overflow-hidden">
-          <motion.img
-            src={IMAGES.hero}
-            alt="Modern residence in Kochi designed and built by Skylex"
-            style={{ y: imgY }}
-            className="h-[62vh] w-full scale-[1.18] object-cover md:h-[80vh]"
+        <div className="relative h-[62vh] overflow-hidden rounded-[1.75rem] md:h-[80vh] md:rounded-[2.5rem]">
+          <motion.div style={{ y: sliderY }} className="absolute inset-0 scale-[1.16]">
+            <AnimatePresence mode="popLayout">
+              <motion.img
+                key={index}
+                src={slide.image}
+                alt={`${slide.name} — ${slide.location}`}
+                initial={{ opacity: 0, scale: 1.06 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.4, ease: EASE }}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </AnimatePresence>
+          </motion.div>
+          <div
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal/45 via-transparent to-transparent"
+            aria-hidden="true"
           />
-        </div>
-        <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-4 text-[11px] font-medium uppercase tracking-[0.24em] text-stone md:px-10 lg:px-16">
-          <span>Modern Residence — Kochi</span>
-          <span>2025</span>
+
+          {/* Caption + controls */}
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-6 md:p-10">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.6, ease: EASE }}
+              >
+                <p className="font-display text-2xl font-medium tracking-tight text-cream md:text-4xl">
+                  {slide.name}
+                </p>
+                <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.28em] text-cream/70">
+                  {slide.location} · {slide.year}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="flex items-center gap-3">
+              <span className="mr-1 hidden font-display text-sm italic text-cream/80 sm:block">
+                {String(index + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
+              </span>
+              {HERO_SLIDES.map((s, i) => (
+                <button
+                  key={s.image}
+                  onClick={() => go(i)}
+                  aria-label={`Show slide ${i + 1}: ${s.name}`}
+                  className="group flex h-8 items-center"
+                >
+                  <span
+                    className={cn(
+                      "h-[3px] rounded-full transition-all duration-500",
+                      i === index ? "w-10 bg-cream" : "w-5 bg-cream/35 group-hover:bg-cream/70"
+                    )}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </motion.div>
     </section>

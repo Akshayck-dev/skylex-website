@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import { Button } from "./components/ui/button";
+import { destroyLenis, getLenis, scrollToTopInstant } from "./lib/lenis";
 import { AboutPage } from "./pages/About";
 import { ContactPage } from "./pages/Contact";
 import { HomePage } from "./pages/Home";
@@ -16,8 +17,26 @@ import { ServicesPage } from "./pages/Services";
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    scrollToTopInstant();
   }, [pathname]);
+  return null;
+}
+
+/** Lenis smooth-scroll driver (single raf loop for the whole app). */
+function SmoothScroll() {
+  useEffect(() => {
+    const lenis = getLenis();
+    let raf = 0;
+    const loop = (time: number) => {
+      lenis.raf(time);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => {
+      cancelAnimationFrame(raf);
+      destroyLenis();
+    };
+  }, []);
   return null;
 }
 
@@ -46,6 +65,7 @@ export default function App() {
           Skip to content
         </a>
         <ScrollToTop />
+        <SmoothScroll />
         <Navbar />
         <main id="main">
           <Routes>

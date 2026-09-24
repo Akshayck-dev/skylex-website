@@ -83,7 +83,7 @@ export function Contact() {
           {/* Right — form */}
           <div className="lg:col-span-6 lg:col-start-7">
             <Reveal delay={0.1}>
-              <div className="relative border border-charcoal/15 bg-beige/50 p-8 md:p-12">
+              <div className="relative rounded-[1.75rem] border border-charcoal/15 bg-beige/50 p-8 md:p-12">
                 <AnimatePresence mode="wait">
                   {sent ? (
                     <motion.div

@@ -24,7 +24,7 @@ export function Interiors() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.9, ease: EASE, delay: 0.25 }}
-              className="absolute -bottom-10 -right-4 hidden w-56 border-8 border-cream shadow-2xl md:block lg:-right-10 lg:w-72"
+              className="absolute -bottom-10 -right-4 hidden w-56 overflow-hidden rounded-2xl border-8 border-cream shadow-2xl md:block lg:-right-10 lg:w-72"
             >
               <img
                 src={IMAGES.interiorsAlt}

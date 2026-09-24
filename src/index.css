@@ -4,7 +4,8 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    /* Lenis drives smoothing — keep native behavior instant. */
+    scroll-behavior: auto;
   }
 
   body {

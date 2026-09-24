@@ -12,7 +12,7 @@ function ProjectCard({ project }: { project: Project }) {
     <Reveal className={cn(project.span)}>
       <Link
         to="/contact"
-        className="group relative block overflow-hidden bg-charcoal"
+        className="group relative block overflow-hidden rounded-[1.5rem] bg-charcoal"
         aria-label={`${project.name} — ${project.location}`}
       >
         <div className={cn("overflow-hidden", project.aspect)}>
