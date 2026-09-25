@@ -12,6 +12,7 @@ const MotionLink = motion(Link);
 
 /** Routes whose hero banner is dark — navbar starts in light mode there. */
 const DARK_HERO_ROUTES = new Set([
+  "/",
   "/about",
   "/services",
   "/projects",
