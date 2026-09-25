@@ -4,7 +4,7 @@ import { Reveal } from "./shared";
 /** Quiet editorial facts strip — no counters, no animation gimmicks. */
 export function Stats() {
   return (
-    <section className="bg-cream" aria-label="Studio facts">
+    <section className="border-y border-charcoal/15 bg-cream" aria-label="Studio facts">
       <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
         <div className="grid grid-cols-2 gap-px bg-charcoal/15 lg:grid-cols-4">
           {STATS.map((stat, i) => (

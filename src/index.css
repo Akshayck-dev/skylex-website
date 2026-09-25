@@ -14,12 +14,12 @@
   }
 
   ::selection {
-    background: #b0512c;
-    color: #f7f6f2;
+    background: #a2592f;
+    color: #f6f2e9;
   }
 
   :focus-visible {
-    outline: 2px solid #b0512c;
+    outline: 2px solid #a2592f;
     outline-offset: 3px;
   }
 }
@@ -34,13 +34,13 @@
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #f7f6f2;
+    background: #f6f2e9;
   }
   ::-webkit-scrollbar-thumb {
-    background: #c9c4b8;
+    background: #c9c2b2;
     border-radius: 0;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #b0512c;
+    background: #a2592f;
   }
 }

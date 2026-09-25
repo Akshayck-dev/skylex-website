@@ -49,7 +49,7 @@ export const SERVICES: Service[] = [
     index: "01",
     name: "Architecture",
     description:
-      "Concept-driven architectural design — from site study and spatial planning to detailed working drawings, shaped around light, climate and context.",
+      "Site, light and climate studied first — then drawn with precision.",
     image: "images/service-architecture.jpg",
     imageAlt: "Minimal white concrete architecture",
   },
@@ -57,7 +57,7 @@ export const SERVICES: Service[] = [
     index: "02",
     name: "Construction",
     description:
-      "End-to-end civil construction executed by our own engineering teams — structural precision, honest materials and uncompromising site supervision.",
+      "Our own engineers on site. Honest materials, exact execution.",
     image: "images/service-construction.jpg",
     imageAlt: "Concrete facade detail of a modern building",
   },
@@ -65,7 +65,7 @@ export const SERVICES: Service[] = [
     index: "03",
     name: "Interior Design",
     description:
-      "Interiors composed around material, proportion and everyday rituals — bespoke furniture, layered lighting and finishes that age gracefully.",
+      "Material, proportion and light — composed around daily ritual.",
     image: "images/service-interior.jpg",
     imageAlt: "Elegant luxury living room interior",
   },
@@ -73,7 +73,7 @@ export const SERVICES: Service[] = [
     index: "04",
     name: "Turnkey Projects",
     description:
-      "A single point of responsibility from first sketch to final handover — design, approvals, construction and interiors delivered as one seamless project.",
+      "One contract, one team — from first sketch to final handover.",
     image: "images/service-turnkey.jpg",
     imageAlt: "Modern residence exterior at dusk",
   },
@@ -112,8 +112,8 @@ export const PROJECTS: Project[] = [
     year: "2024",
     image: "images/project-2.jpg",
     imageAlt: "Luxury villa with landscaped foreground",
-    span: "md:col-span-5",
-    aspect: "aspect-[4/5]",
+    span: "md:col-span-4 md:col-start-9 md:mt-40",
+    aspect: "aspect-[3/4]",
   },
   {
     index: "03",
@@ -123,7 +123,7 @@ export const PROJECTS: Project[] = [
     year: "2025",
     image: "images/project-3.jpg",
     imageAlt: "Contemporary living room with designer furniture",
-    span: "md:col-span-5",
+    span: "md:col-span-5 md:col-start-2 md:-mt-16",
     aspect: "aspect-[4/5]",
   },
   {
@@ -134,8 +134,8 @@ export const PROJECTS: Project[] = [
     year: "2023",
     image: "images/project-4.jpg",
     imageAlt: "Minimal residence facade in daylight",
-    span: "md:col-span-7",
-    aspect: "aspect-[4/3]",
+    span: "md:col-span-6 md:col-start-7",
+    aspect: "aspect-[16/11]",
   },
   {
     index: "05",
@@ -145,21 +145,22 @@ export const PROJECTS: Project[] = [
     year: "2024",
     image: "images/project-5.jpg",
     imageAlt: "Premium commercial office interior",
-    span: "md:col-span-12",
-    aspect: "aspect-[21/9]",
+    span: "md:col-span-8 md:col-start-3",
+    aspect: "aspect-[21/10]",
   },
 ];
 
 export const FEATURED_PROJECT = {
-  eyebrow: "Featured project",
+  eyebrow: "Project feature",
   name: "Villa Aurelia",
-  meta: "Contemporary Architecture · Kozhikode",
+  meta: "Residential · 4,200 sq.ft · Calicut · 2026",
   image: IMAGES.featured,
   imageAlt: "Villa Aurelia exterior at dusk",
   stats: [
-    { label: "Area", value: "4,500 sq.ft" },
-    { label: "Type", value: "Residential" },
-    { label: "Status", value: "Completed" },
+    { label: "Typology", value: "Residential" },
+    { label: "Area", value: "4,200 sq.ft" },
+    { label: "Location", value: "Calicut" },
+    { label: "Year", value: "2026" },
   ],
 };
 
@@ -248,7 +249,7 @@ export interface Testimonial {
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "Every detail felt intentional. From the first design conversation to the final handover, the entire experience was seamless.",
+      "They read the site before they drew a single line — the light, the trees, the way the rain moves across the plot. The house feels like it was always meant to be here.",
     client: "Anjali & Rohan Menon",
     project: "Modern Residence · Kochi",
   },
@@ -273,10 +274,10 @@ export interface Stat {
 }
 
 export const STATS: Stat[] = [
-  { value: 10, suffix: "+", label: "Years Experience" },
-  { value: 120, suffix: "+", label: "Projects Completed" },
-  { value: 85, suffix: "+", label: "Happy Clients" },
-  { value: 25, suffix: "+", label: "Design Awards / Recognitions" },
+  { value: 12, suffix: "+", label: "Years of Practice" },
+  { value: 48, suffix: "", label: "Projects Delivered" },
+  { value: 9, suffix: "", label: "Cities" },
+  { value: 3, suffix: "", label: "Disciplines" },
 ];
 
 export const CONTACT = {

@@ -42,10 +42,10 @@ interface ClipRevealProps {
   delay?: number;
 }
 
-/** Cinematic clip-path image reveal. */
+/** Cinematic clip-path image reveal — sharp editorial frame, no rounding. */
 export function ClipReveal({ children, className, delay = 0 }: ClipRevealProps) {
   return (
-    <div className={cn("overflow-hidden rounded-[1.5rem]", className)}>
+    <div className={cn("overflow-hidden", className)}>
       <motion.div
         initial={{ clipPath: "inset(8% 6% 8% 6%)", opacity: 0.4, scale: 1.04 }}
         whileInView={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1, scale: 1 }}

@@ -7,13 +7,14 @@ import { Eyebrow, Reveal } from "./shared";
 
 const MotionLink = motion(Link);
 
+/** Villa Aurelia — premium project teaser, restrained type over photography. */
 export function FeaturedProject() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-charcoal" aria-label="Featured project">
@@ -25,59 +26,51 @@ export function FeaturedProject() {
           className="h-full w-full object-cover"
         />
       </motion.div>
-      <div className="absolute inset-0 bg-charcoal/40" aria-hidden="true" />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-charcoal/40"
+        className="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-charcoal/10 to-transparent"
         aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto flex min-h-[92vh] w-full max-w-shell flex-col justify-between px-6 py-20 md:px-10 md:py-28 lg:px-16">
+      <div className="relative z-10 mx-auto flex min-h-[95vh] w-full max-w-shell flex-col justify-end px-6 pb-20 md:px-10 md:pb-28 lg:px-16">
         <Reveal>
           <Eyebrow light>{FEATURED_PROJECT.eyebrow}</Eyebrow>
         </Reveal>
 
-        <div>
-          <Reveal delay={0.05}>
-            <h2 className="font-display text-6xl font-medium tracking-tight text-cream text-balance md:text-8xl lg:text-[7rem]">
-              {FEATURED_PROJECT.name}
-            </h2>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <p className="mt-4 text-[12px] font-medium uppercase tracking-[0.3em] text-cream/70">
-              {FEATURED_PROJECT.meta}
-            </p>
-          </Reveal>
+        <Reveal delay={0.06}>
+          <h2 className="mt-6 font-display text-6xl font-medium tracking-tight text-cream text-balance md:text-8xl lg:text-[7.5rem]">
+            {FEATURED_PROJECT.name}
+          </h2>
+        </Reveal>
 
-          <Reveal delay={0.18}>
-            <dl className="mt-12 grid max-w-2xl grid-cols-3 gap-6 border-t border-cream/20 pt-8">
-              {FEATURED_PROJECT.stats.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="text-[11px] font-medium uppercase tracking-[0.28em] text-cream/55">
-                    {stat.label}
-                  </dt>
-                  <dd className="mt-2 font-display text-2xl font-medium text-cream md:text-3xl">
-                    {stat.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
+        <Reveal delay={0.12}>
+          <dl className="mt-10 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-6 border-t border-cream/20 pt-8 sm:grid-cols-4">
+            {FEATURED_PROJECT.stats.map((stat) => (
+              <div key={stat.label}>
+                <dt className="text-[11px] font-medium uppercase tracking-[0.28em] text-cream/55">
+                  {stat.label}
+                </dt>
+                <dd className="mt-2 text-[15px] font-medium tracking-wide text-cream">
+                  {stat.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
 
-          <Reveal delay={0.24}>
-            <MotionLink
-              to="/contact"
-              whileHover={{ x: 6 }}
-              transition={{ duration: 0.3 }}
-              className="group mt-10 inline-flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-cream"
-            >
-              View Case Study
-              <ArrowRight
-                className="size-4 text-clay transition-transform duration-300 group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </MotionLink>
-          </Reveal>
-        </div>
+        <Reveal delay={0.18}>
+          <MotionLink
+            to="/contact"
+            whileHover={{ x: 6 }}
+            transition={{ duration: 0.3 }}
+            className="group mt-10 inline-flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.24em] text-cream"
+          >
+            View project
+            <ArrowRight
+              className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            />
+          </MotionLink>
+        </Reveal>
       </div>
     </section>
   );
