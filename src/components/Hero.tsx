@@ -74,7 +74,7 @@ export function Hero() {
 
           <motion.div
             variants={item}
-            className="order-4 mt-8 flex flex-col gap-8 md:order-3 md:mt-10 md:flex-row md:items-end md:justify-between"
+            className="order-4 mt-8 flex flex-col gap-8 md:mt-12 md:flex-row md:items-end md:justify-between"
           >
             <p className="max-w-md text-base leading-relaxed text-charcoal/65 md:text-lg">
               A Kerala-based studio of engineers and designers — taking homes
@@ -97,7 +97,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 64 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, ease: EASE, delay: 0.65 }}
-          className="order-3 mt-8 w-full md:order-4 md:mt-20"
+          className="order-3 mt-8 w-full md:mt-12"
         >
           <div className="relative h-[58vh] overflow-hidden rounded-[1.75rem] md:h-[80vh] md:rounded-[2.5rem]">
             <motion.div style={{ y: sliderY }} className="absolute inset-0 scale-[1.16]">
