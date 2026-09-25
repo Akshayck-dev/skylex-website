@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { NAV_LINKS } from "../data/content";
+import { CONTACT, NAV_LINKS } from "../data/content";
 import { cn } from "../lib/utils";
+import { getLenis } from "../lib/lenis";
 import { Button } from "./ui/button";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -22,88 +26,181 @@ export function Navbar() {
     setOpen(false);
   }, [pathname]);
 
+  // Lock scroll (page + Lenis) while the drawer is open
+  useEffect(() => {
+    if (!open) return;
+    const lenis = getLenis();
+    lenis.stop();
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      lenis.start();
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open ]);
+
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b border-cream/10 bg-ink/95 backdrop-blur-md transition-shadow duration-300",
-        scrolled && "shadow-[0_10px_36px_rgba(0,0,0,0.45)]"
-      )}
-    >
-      <div className="mx-auto flex h-[76px] w-full max-w-shell items-center justify-between px-6 md:px-10 lg:px-16">
-        {/* Brand */}
-        <Link to="/" className="flex flex-col leading-none" aria-label="Skylex Engineering Solutions — home">
-          <span className="font-display text-[26px] font-semibold tracking-[0.18em] text-cream">
-            SKYLEX
-          </span>
-          <span className="mt-1 text-[8px] font-medium uppercase tracking-[0.42em] text-gold/80">
-            Engineering Solutions
-          </span>
-        </Link>
+    <>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 border-b border-cream/10 bg-ink/95 backdrop-blur-md transition-shadow duration-300",
+          scrolled && "shadow-[0_10px_36px_rgba(0,0,0,0.45)]"
+        )}
+      >
+        <div className="mx-auto flex h-[76px] w-full max-w-shell items-center justify-between px-6 md:px-10 lg:px-16">
+          {/* Brand */}
+          <Link to="/" className="flex flex-col leading-none" aria-label="Skylex Engineering Solutions — home">
+            <span className="font-display text-[26px] font-semibold tracking-[0.18em] text-cream">
+              SKYLEX
+            </span>
+            <span className="mt-1 text-[8px] font-medium uppercase tracking-[0.42em] text-gold/80">
+              Engineering Solutions
+            </span>
+          </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className={cn(
-                "text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-300",
-                pathname === link.href ? "text-gold" : "text-cream/70 hover:text-gold"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden lg:block">
-          <Button variant="gold" size="sm" onClick={() => navigate("/contact")}>
-            Get a Quote
-            <ArrowUpRight aria-hidden="true" />
-          </Button>
-        </div>
-
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="flex size-11 items-center justify-center rounded-lg border border-cream/15 text-cream transition-colors hover:border-gold hover:text-gold lg:hidden"
-        >
-          {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
-        </button>
-      </div>
-
-      {/* Mobile dropdown */}
-      {open && (
-        <nav
-          className="border-t border-cream/10 bg-ink px-6 pb-8 pt-4 lg:hidden"
-          aria-label="Mobile"
-        >
-          <ul className="space-y-1">
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
             {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  to={link.href}
-                  className={cn(
-                    "block rounded-lg px-3 py-3 text-sm font-semibold uppercase tracking-[0.18em] transition-colors",
-                    pathname === link.href
-                      ? "bg-cream/5 text-gold"
-                      : "text-cream/75 hover:bg-cream/5 hover:text-gold"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              </li>
+              <Link
+                key={link.href}
+                to={link.href}
+                className={cn(
+                  "text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-300",
+                  pathname === link.href ? "text-gold" : "text-cream/70 hover:text-gold"
+                )}
+              >
+                {link.label}
+              </Link>
             ))}
-          </ul>
-          <Button variant="gold" className="mt-5 w-full" onClick={() => navigate("/contact")}>
-            Get a Quote
-            <ArrowUpRight aria-hidden="true" />
-          </Button>
-        </nav>
-      )}
-    </header>
+          </nav>
+
+          <div className="hidden lg:block">
+            <Button variant="gold" size="sm" onClick={() => navigate("/contact")}>
+              Get a Quote
+              <ArrowUpRight aria-hidden="true" />
+            </Button>
+          </div>
+
+          {/* Mobile toggle */}
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+            className="flex size-11 items-center justify-center rounded-lg border border-cream/15 text-cream transition-colors hover:border-gold hover:text-gold lg:hidden"
+          >
+            <Menu className="size-5" aria-hidden="true" />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile side drawer */}
+      <AnimatePresence>
+        {open && (
+          <div className="fixed inset-0 z-[60] lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setOpen(false)}
+              className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
+            />
+            {/* Panel */}
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.45, ease: EASE }}
+              className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-coal shadow-[-24px_0_60px_rgba(0,0,0,0.5)]"
+            >
+              {/* Panel header */}
+              <div className="flex items-center justify-between border-b border-cream/10 px-6 py-5">
+                <span className="font-display text-lg font-semibold tracking-[0.22em] text-cream">
+                  SKYLEX
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Close menu"
+                  className="flex size-10 items-center justify-center rounded-full border border-cream/15 text-cream transition-colors hover:border-gold hover:text-gold"
+                >
+                  <X className="size-5" aria-hidden="true" />
+                </button>
+              </div>
+
+              {/* Links */}
+              <nav className="flex-1 overflow-y-auto px-6 py-8" aria-label="Mobile">
+                <ul className="space-y-2">
+                  {NAV_LINKS.map((link, i) => {
+                    const active = pathname === link.href;
+                    return (
+                      <motion.li
+                        key={link.href}
+                        initial={{ opacity: 0, x: 32 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.08 + i * 0.06, duration: 0.45, ease: EASE }}
+                      >
+                        <Link
+                          to={link.href}
+                          className={cn(
+                            "group flex items-baseline gap-4 rounded-xl px-3 py-3 transition-colors",
+                            active ? "bg-cream/5" : "hover:bg-cream/5"
+                          )}
+                        >
+                          <span
+                            className={cn(
+                              "font-display text-sm italic",
+                              active ? "text-gold" : "text-cream/35 group-hover:text-gold"
+                            )}
+                          >
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <span
+                            className={cn(
+                              "font-display text-[28px] font-medium tracking-tight transition-colors",
+                              active ? "text-gold" : "text-cream group-hover:text-gold"
+                            )}
+                          >
+                            {link.label}
+                          </span>
+                        </Link>
+                      </motion.li>
+                    );
+                  })}
+                </ul>
+              </nav>
+
+              {/* Panel footer */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.4, ease: EASE }}
+                className="border-t border-cream/10 px-6 py-6"
+              >
+                <p className="text-xs uppercase tracking-[0.2em] text-cream/45">
+                  {CONTACT.phone}
+                </p>
+                <p className="mt-1 text-xs uppercase tracking-[0.2em] text-cream/45">
+                  {CONTACT.email}
+                </p>
+                <Button
+                  variant="gold"
+                  className="mt-5 w-full"
+                  onClick={() => navigate("/contact")}
+                >
+                  Get a Quote
+                  <ArrowUpRight aria-hidden="true" />
+                </Button>
+              </motion.div>
+            </motion.aside>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
