@@ -81,6 +81,8 @@ export const SERVICES: Service[] = [
 
 export interface Project {
   index: string;
+  /** URL slug for the case-study page, e.g. "modern-residence" */
+  slug: string;
   name: string;
   location: string;
   category: string;
@@ -90,11 +92,16 @@ export interface Project {
   /** tailwind classes controlling the editorial grid placement */
   span: string;
   aspect: string;
+  /** Case-study page content */
+  overview: string;
+  scope: string[];
+  gallery: { src: string; alt: string }[];
 }
 
 export const PROJECTS: Project[] = [
   {
     index: "01",
+    slug: "modern-residence",
     name: "Modern Residence",
     location: "Kochi",
     category: "Residential",
@@ -103,9 +110,18 @@ export const PROJECTS: Project[] = [
     imageAlt: "Modern residence exterior with clean lines",
     span: "md:col-span-7",
     aspect: "aspect-[4/3]",
+    overview:
+      "A crisp, light-filled family home on a compact urban plot in Kochi. The design keeps the massing simple — clean volumes, deep overhangs and full-height glazing — while the interiors open onto a central courtyard that pulls daylight and breeze through every room.",
+    scope: ["Architectural design", "Structural engineering", "Turnkey construction", "Landscape"],
+    gallery: [
+      { src: "images/project-1.jpg", alt: "Modern residence exterior with clean lines" },
+      { src: "images/interiors-main.jpg", alt: "Open living space with natural light" },
+      { src: "images/interiors-alt.jpg", alt: "Detail of interior finishes" },
+    ],
   },
   {
     index: "02",
+    slug: "luxury-villa",
     name: "Luxury Villa",
     location: "Kozhikode",
     category: "Residential",
@@ -114,9 +130,18 @@ export const PROJECTS: Project[] = [
     imageAlt: "Luxury villa with landscaped foreground",
     span: "md:col-span-4 md:col-start-9 md:mt-40",
     aspect: "aspect-[3/4]",
+    overview:
+      "A resort-scale private villa in Kozhikode organised around water and landscape. Double-height living spaces, a floating staircase and stone-and-timber material palette give the home a calm, grounded luxury — built to host large family gatherings without losing intimacy.",
+    scope: ["Architectural design", "Interior design", "Turnkey construction", "Landscape & pool"],
+    gallery: [
+      { src: "images/project-2.jpg", alt: "Luxury villa with landscaped foreground" },
+      { src: "images/featured.jpg", alt: "Villa exterior at dusk" },
+      { src: "images/interiors-main.jpg", alt: "Double-height living space" },
+    ],
   },
   {
     index: "03",
+    slug: "contemporary-interior",
     name: "Contemporary Interior",
     location: "Bengaluru",
     category: "Interior",
@@ -125,9 +150,18 @@ export const PROJECTS: Project[] = [
     imageAlt: "Contemporary living room with designer furniture",
     span: "md:col-span-5 md:col-start-2 md:-mt-16",
     aspect: "aspect-[4/5]",
+    overview:
+      "A full-home interior for a young family in Bengaluru — warm minimalism with oak, boucle and brushed brass. Bespoke joinery hides storage through the living zones, and layered lighting lets the same rooms shift from workday bright to evening soft.",
+    scope: ["Space planning", "Custom furniture", "Lighting design", "Turnkey fit-out"],
+    gallery: [
+      { src: "images/project-3.jpg", alt: "Contemporary living room with designer furniture" },
+      { src: "images/interiors-alt.jpg", alt: "Bedroom in warm neutral tones" },
+      { src: "images/interiors-main.jpg", alt: "Dining area with bespoke joinery" },
+    ],
   },
   {
     index: "04",
+    slug: "minimal-residence",
     name: "Minimal Residence",
     location: "Thrissur",
     category: "Residential",
@@ -136,9 +170,18 @@ export const PROJECTS: Project[] = [
     imageAlt: "Minimal residence facade in daylight",
     span: "md:col-span-6 md:col-start-7",
     aspect: "aspect-[16/11]",
+    overview:
+      "Restraint as a design principle. This Thrissur home strips the facade to plaster, timber screens and glass — no ornament, only proportion. Inside, a restrained palette and flush detailing keep the focus on light, volume and the family's daily rituals.",
+    scope: ["Architectural design", "Structural engineering", "Turnkey construction"],
+    gallery: [
+      { src: "images/project-4.jpg", alt: "Minimal residence facade in daylight" },
+      { src: "images/hero.jpg", alt: "Facade detail with timber screens" },
+      { src: "images/interiors-main.jpg", alt: "Minimal living interior" },
+    ],
   },
   {
     index: "05",
+    slug: "premium-commercial-space",
     name: "Premium Commercial Space",
     location: "Kochi",
     category: "Commercial",
@@ -147,6 +190,14 @@ export const PROJECTS: Project[] = [
     imageAlt: "Premium commercial office interior",
     span: "md:col-span-8 md:col-start-3",
     aspect: "aspect-[21/10]",
+    overview:
+      "A 12,000 sq.ft corporate office in Kochi designed for a hybrid workforce — neighbourhood work zones, acoustic pods, a town-hall stair and biophilic breakout terraces. Delivered as a single turnkey contract, from core-and-shell adaptation to furniture and branding.",
+    scope: ["Workplace strategy", "Interior design", "MEP coordination", "Turnkey fit-out"],
+    gallery: [
+      { src: "images/project-5.jpg", alt: "Premium commercial office interior" },
+      { src: "images/project-3.jpg", alt: "Work lounge with designer furniture" },
+      { src: "images/interiors-alt.jpg", alt: "Meeting suite interior" },
+    ],
   },
 ];
 

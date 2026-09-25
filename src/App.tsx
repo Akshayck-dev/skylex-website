@@ -3,6 +3,7 @@ import { HashRouter, Route, Routes, useLocation, useNavigate } from "react-route
 import { ArrowUpRight } from "lucide-react";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
+import { WhatsAppButton } from "./components/WhatsAppButton";
 import { Button } from "./components/ui/button";
 import { destroyLenis, getLenis, scrollToTopInstant } from "./lib/lenis";
 import { AboutPage } from "./pages/About";
@@ -11,6 +12,7 @@ import { HomePage } from "./pages/Home";
 import { InteriorsPage } from "./pages/Interiors";
 import { NotFoundPage } from "./pages/NotFound";
 import { ProcessPage } from "./pages/Process";
+import { ProjectDetailPage } from "./pages/ProjectDetail";
 import { ProjectsPage } from "./pages/Projects";
 import { ServicesPage } from "./pages/Services";
 
@@ -73,6 +75,7 @@ export default function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/projects/:slug" element={<ProjectDetailPage />} />
             <Route path="/interiors" element={<InteriorsPage />} />
             <Route path="/process" element={<ProcessPage />} />
             <Route path="/contact" element={<ContactPage />} />
@@ -81,6 +84,7 @@ export default function App() {
         </main>
         <Footer />
         <MobileStickyCTA />
+        <WhatsAppButton />
       </div>
     </HashRouter>
   );

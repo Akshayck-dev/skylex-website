@@ -20,7 +20,7 @@ export function Projects() {
           {featured.map((project, i) => (
             <Reveal key={project.index} delay={i * 0.08}>
               <Link
-                to="/projects"
+                to={`/projects/${project.slug}`}
                 className="group block"
                 aria-label={`${project.name} — ${project.location}, Kerala`}
               >

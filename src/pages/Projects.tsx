@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { PageHero } from "../components/PageHero";
 import { Reveal, SectionHead } from "../components/shared";
 import { PROJECTS, type Project } from "../data/content";
@@ -61,7 +62,7 @@ export function ProjectsPage() {
           <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {visible.map((project, i) => (
               <Reveal key={project.index} delay={(i % 3) * 0.07}>
-                <article className="group">
+                <Link to={`/projects/${project.slug}`} className="group block">
                   <div className="overflow-hidden rounded-2xl">
                     <img
                       src={project.image}
@@ -78,7 +79,7 @@ export function ProjectsPage() {
                       {project.location}, Kerala · {project.category}
                     </p>
                   </div>
-                </article>
+                </Link>
               </Reveal>
             ))}
           </div>

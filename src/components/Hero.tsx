@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { IMAGES, STATS } from "../data/content";
+import { useCountUp } from "../hooks/useCountUp";
 import { cn } from "../lib/utils";
 import { Reveal } from "./shared";
 import { Button } from "./ui/button";
@@ -57,27 +58,33 @@ export function Hero() {
       <div className="relative z-10 border-t border-cream/15">
         <div className="mx-auto grid max-w-shell grid-cols-2 px-6 md:grid-cols-4 md:px-10 lg:px-16">
           {STATS.map((stat, i) => (
-            <Reveal
-              key={stat.label}
-              delay={i * 0.06}
-              className={cn(
-                "py-8 md:py-10",
-                i > 0 && "border-l border-cream/15 pl-6 md:pl-10",
-                i >= 2 && "max-md:border-t max-md:border-cream/15",
-                i === 2 && "max-md:border-l-0 max-md:pl-0"
-              )}
-            >
-              <p className="font-display text-4xl font-medium text-cream md:text-5xl">
-                {stat.value}
-                <span className="text-gold">{stat.suffix}</span>
-              </p>
-              <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.24em] text-cream/60">
-                {stat.label}
-              </p>
-            </Reveal>
+            <StatCell key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} index={i} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function StatCell({ value, suffix, label, index: i }: { value: number; suffix: string; label: string; index: number }) {
+  const { ref, value: n } = useCountUp(value);
+  return (
+    <Reveal
+      delay={i * 0.06}
+      className={cn(
+        "py-8 md:py-10",
+        i > 0 && "border-l border-cream/15 pl-6 md:pl-10",
+        i >= 2 && "max-md:border-t max-md:border-cream/15",
+        i === 2 && "max-md:border-l-0 max-md:pl-0"
+      )}
+    >
+      <p className="font-display text-4xl font-medium text-cream md:text-5xl">
+        <span ref={ref}>{n}</span>
+        <span className="text-gold">{suffix}</span>
+      </p>
+      <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.24em] text-cream/60">
+        {label}
+      </p>
+    </Reveal>
   );
 }
