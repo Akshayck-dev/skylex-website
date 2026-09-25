@@ -112,3 +112,83 @@ export function SectionHeading({
     </div>
   );
 }
+
+interface SectionHeadProps {
+  eyebrow: string;
+  title: ReactNode;
+  sub?: string;
+  link?: { label: string; href: string };
+  dark?: boolean;
+  align?: "left" | "center";
+  className?: string;
+}
+
+/**
+ * Arcadia-style section header: gold eyebrow, serif title,
+ * optional sub copy with a "View all →" link at the right.
+ */
+export function SectionHead({
+  eyebrow,
+  title,
+  sub,
+  link,
+  dark = false,
+  align = "left",
+  className,
+}: SectionHeadProps) {
+  return (
+    <div className={cn(align === "center" && "text-center", className)}>
+      <Reveal>
+        <p
+          className={cn(
+            "text-[11px] font-semibold uppercase tracking-[0.32em]",
+            dark ? "text-gold" : "text-golddeep"
+          )}
+        >
+          {eyebrow}
+        </p>
+      </Reveal>
+      <div
+        className={cn(
+          "mt-5 flex flex-col gap-6",
+          align === "center" ? "items-center" : "md:flex-row md:items-end md:justify-between"
+        )}
+      >
+        <Reveal delay={0.06}>
+          <h2
+            className={cn(
+              "max-w-2xl font-display text-4xl font-medium leading-[1.08] tracking-tight text-balance md:text-5xl lg:text-6xl",
+              dark ? "text-cream" : "text-ink"
+            )}
+          >
+            {title}
+          </h2>
+          {sub && (
+            <p
+              className={cn(
+                "mt-4 max-w-xl text-base leading-relaxed",
+                dark ? "text-cream/65" : "text-ink/60"
+              )}
+            >
+              {sub}
+            </p>
+          )}
+        </Reveal>
+        {link && (
+          <Reveal delay={0.12} className="shrink-0">
+            <a
+              href={link.href}
+              className={cn(
+                "group inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.2em] transition-colors",
+                dark ? "text-gold hover:text-goldsoft" : "text-golddeep hover:text-ink"
+              )}
+            >
+              {link.label}
+              <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+          </Reveal>
+        )}
+      </div>
+    </div>
+  );
+}

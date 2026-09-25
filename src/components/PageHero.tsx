@@ -1,49 +1,50 @@
-import { motion } from "framer-motion";
-import { Reveal } from "./shared";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
+import { Link } from "react-router-dom";
 
 interface PageHeroProps {
-  eyebrow: string;
-  title: React.ReactNode;
+  title: string;
   sub?: string;
+  crumb: string;
+  image: string;
 }
 
-/** Editorial banner used at the top of every inner page. */
-export function PageHero({ eyebrow, title, sub }: PageHeroProps) {
+/** Dark inner-page banner with image, gradient overlay and breadcrumb. */
+export function PageHero({ title, sub, crumb, image }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-charcoal pt-40 pb-20 md:pt-52 md:pb-28">
-      {/* soft clay glow */}
-      <div
+    <section className="relative flex min-h-[52vh] items-end overflow-hidden bg-ink">
+      <img
+        src={image}
+        alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[820px] -translate-x-1/2 rounded-full bg-clay/15 blur-[140px]"
+        className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="relative mx-auto max-w-shell px-6 md:px-10 lg:px-16">
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE }}
-          className="text-[11px] font-medium uppercase tracking-[0.34em] text-clay"
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/25"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 mx-auto w-full max-w-shell px-6 pb-14 pt-36 md:px-10 md:pb-16 lg:px-16">
+        <nav
+          aria-label="Breadcrumb"
+          className="text-[11px] font-semibold uppercase tracking-[0.24em]"
         >
-          {eyebrow}
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.08 }}
-          className="mt-5 max-w-4xl font-display text-5xl font-medium leading-[1.02] tracking-tight text-cream text-balance md:text-7xl"
-        >
+          <Link to="/" className="text-cream/60 transition-colors hover:text-gold">
+            Home
+          </Link>
+          <span className="mx-2.5 text-gold" aria-hidden="true">
+            »
+          </span>
+          <span className="text-gold" aria-current="page">
+            {crumb}
+          </span>
+        </nav>
+        <h1 className="mt-4 max-w-3xl font-display text-5xl font-medium leading-[1.05] tracking-tight text-cream text-balance md:text-6xl lg:text-7xl">
           {title}
-        </motion.h1>
+        </h1>
         {sub && (
-          <Reveal delay={0.16}>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-cream/65 md:text-lg">
-              {sub}
-            </p>
-          </Reveal>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-cream/70 md:text-lg">
+            {sub}
+          </p>
         )}
       </div>
-      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-cream/10" />
     </section>
   );
 }

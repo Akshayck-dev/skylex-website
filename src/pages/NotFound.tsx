@@ -16,7 +16,7 @@ export function NotFoundPage() {
         <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-stone">
           The page you&rsquo;re looking for doesn&rsquo;t exist — but plenty of beautiful ones do.
         </p>
-        <Link to="/" className={cn(buttonVariants({ variant: "default", size: "lg" }), "mt-10")}>
+        <Link to="/" className={cn(buttonVariants({ variant: "gold", size: "lg" }), "mt-10")}>
           <ArrowLeft aria-hidden="true" />
           Back to Home
         </Link>

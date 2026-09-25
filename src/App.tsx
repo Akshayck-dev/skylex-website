@@ -45,8 +45,8 @@ function MobileStickyCTA() {
   const { pathname } = useLocation();
   if (pathname === "/contact") return null;
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-charcoal/10 bg-cream/95 px-5 py-3 backdrop-blur-md md:hidden">
-      <Button variant="default" className="w-full" onClick={() => navigate("/contact")}>
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-cream/10 bg-ink/95 px-5 py-3 backdrop-blur-md md:hidden">
+      <Button variant="gold" className="w-full" onClick={() => navigate("/contact")}>
         Start a Project
         <ArrowUpRight aria-hidden="true" />
       </Button>
@@ -57,7 +57,7 @@ function MobileStickyCTA() {
 export default function App() {
   return (
     <HashRouter>
-      <div className="min-h-screen bg-cream text-charcoal">
+      <div className="min-h-screen bg-cream text-ink">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:bg-charcoal focus:px-4 focus:py-2 focus:text-cream"

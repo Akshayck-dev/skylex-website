@@ -9,17 +9,17 @@
   }
 
   body {
-    @apply bg-cream text-charcoal font-sans antialiased;
+    @apply bg-cream text-ink font-sans antialiased;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: #a2592f;
-    color: #f6f2e9;
+    background: #c9a24b;
+    color: #14110b;
   }
 
   :focus-visible {
-    outline: 2px solid #a2592f;
+    outline: 2px solid #c9a24b;
     outline-offset: 3px;
   }
 }
@@ -34,13 +34,13 @@
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #f6f2e9;
+    background: #faf7f0;
   }
   ::-webkit-scrollbar-thumb {
-    background: #c9c2b2;
+    background: #c9c0a8;
     border-radius: 0;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #a2592f;
+    background: #c9a24b;
   }
 }

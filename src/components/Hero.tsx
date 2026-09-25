@@ -1,154 +1,80 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { HERO_SLIDES } from "../data/content";
+import { useNavigate } from "react-router-dom";
+import { IMAGES, STATS } from "../data/content";
 import { cn } from "../lib/utils";
+import { Reveal } from "./shared";
+import { Button } from "./ui/button";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-const AUTOPLAY_MS = 6500;
-
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.14, delayChildren: 0.5 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 44 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.1, ease: EASE } },
-};
-
-/**
- * Cinematic full-screen hero — one architectural image at a time,
- * slow crossfade, restrained typography, a single editorial CTA.
- */
+/** Arcadia-style full-screen dark hero with stats strip. */
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const [index, setIndex] = useState(0);
-  const timer = useRef<number | null>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "24%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
-
-  const restart = useCallback(() => {
-    if (timer.current) window.clearInterval(timer.current);
-    timer.current = window.setInterval(() => {
-      setIndex((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, AUTOPLAY_MS);
-  }, []);
-
-  useEffect(() => {
-    restart();
-    return () => {
-      if (timer.current) window.clearInterval(timer.current);
-    };
-  }, [restart]);
-
-  const go = (i: number) => {
-    setIndex(i);
-    restart();
-  };
-
-  const slide = HERO_SLIDES[index];
+  const navigate = useNavigate();
 
   return (
-    <section ref={ref} className="relative h-[100svh] min-h-[620px] w-full overflow-hidden bg-charcoal">
-      {/* Slow cinematic crossfade */}
-      <div className="absolute inset-0">
-        <AnimatePresence mode="sync">
-          <motion.img
-            key={index}
-            src={slide.image}
-            alt={`${slide.name} — ${slide.location}`}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              opacity: { duration: 2, ease: "easeInOut" },
-              scale: { duration: 8, ease: "linear" },
-            }}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </AnimatePresence>
+    <section className="relative flex min-h-[100svh] flex-col bg-ink" aria-label="Introduction">
+      {/* Background */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <img
+          src={IMAGES.hero}
+          alt=""
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/40" />
       </div>
 
-      {/* Restraint: gradient only where the type sits */}
-      <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/10 to-transparent"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-charcoal/50 to-transparent"
-        aria-hidden="true"
-      />
+      {/* Content */}
+      <div className="relative z-10 mx-auto flex w-full max-w-shell flex-1 flex-col justify-center px-6 pb-16 pt-36 md:px-10 md:pt-40 lg:px-16">
+        <Reveal>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">
+            Construction · Interiors · Turnkey
+          </p>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <h1 className="mt-6 max-w-4xl font-display text-6xl font-medium leading-[1.02] tracking-tight text-cream text-balance md:text-7xl lg:text-8xl">
+            Building Homes.
+            <br />
+            Creating Lifestyles.
+          </h1>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <p className="mt-7 max-w-xl text-base leading-relaxed text-cream/70 md:text-lg">
+            From concept to completion, we design and build beautiful spaces
+            that inspire better living.
+          </p>
+        </Reveal>
+        <Reveal delay={0.24}>
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Button variant="gold" size="lg" onClick={() => navigate("/projects")}>
+              Explore Projects
+            </Button>
+            <Button variant="outlineLight" size="lg" onClick={() => navigate("/contact")}>
+              Get Consultation
+            </Button>
+          </div>
+        </Reveal>
+      </div>
 
-      {/* Type block */}
-      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="absolute inset-0">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="visible"
-          className="flex h-full flex-col justify-end px-6 pb-24 md:px-10 md:pb-28 lg:px-16"
-        >
-          <motion.p
-            variants={item}
-            className="text-[11px] font-medium uppercase tracking-[0.32em] text-cream/65"
-          >
-            Skylex Engineering Solutions — Kerala, India
-          </motion.p>
-          <motion.h1
-            variants={item}
-            className="mt-6 max-w-6xl font-display text-[12.5vw] font-medium leading-[0.94] tracking-tight text-cream text-balance sm:text-7xl md:text-8xl lg:text-[8.75rem]"
-          >
-            Architecture, built with intention.
-          </motion.h1>
-          <motion.p
-            variants={item}
-            className="mt-7 max-w-xl text-base leading-relaxed text-cream/80 md:text-xl"
-          >
-            Residential spaces shaped by light, material and place.
-          </motion.p>
-          <motion.div variants={item} className="mt-10">
-            <Link
-              to="/projects"
-              className="group inline-flex items-center gap-4 text-[13px] font-semibold uppercase tracking-[0.28em] text-cream"
+      {/* Stats strip */}
+      <div className="relative z-10 border-t border-cream/15">
+        <div className="mx-auto grid max-w-shell grid-cols-2 px-6 md:grid-cols-4 md:px-10 lg:px-16">
+          {STATS.map((stat, i) => (
+            <Reveal
+              key={stat.label}
+              delay={i * 0.06}
+              className={cn(
+                "py-8 md:py-10",
+                i > 0 && "border-l border-cream/15 pl-6 md:pl-10",
+                i >= 2 && "max-md:border-t max-md:border-cream/15",
+                i === 2 && "max-md:border-l-0 max-md:pl-0"
+              )}
             >
-              <span className="border-b border-cream/40 pb-1.5 transition-colors duration-300 group-hover:border-cream">
-                View our works
-              </span>
-              <ArrowRight
-                className="size-4 transition-transform duration-300 group-hover:translate-x-1.5"
-                aria-hidden="true"
-              />
-            </Link>
-          </motion.div>
-        </motion.div>
-      </motion.div>
-
-      {/* Quiet slide index */}
-      <div className="absolute bottom-8 right-6 flex items-center gap-3 md:right-10 lg:right-16">
-        <span className="font-display text-sm italic text-cream/60">
-          {String(index + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
-        </span>
-        <div className="flex items-center gap-2">
-          {HERO_SLIDES.map((s, i) => (
-            <button
-              key={s.image}
-              onClick={() => go(i)}
-              aria-label={`Show slide ${i + 1}: ${s.name}`}
-              className="flex h-6 items-center"
-            >
-              <span
-                className={cn(
-                  "h-px transition-all duration-500",
-                  i === index ? "w-8 bg-cream" : "w-4 bg-cream/30 hover:bg-cream/60"
-                )}
-              />
-            </button>
+              <p className="font-display text-4xl font-medium text-cream md:text-5xl">
+                {stat.value}
+                <span className="text-gold">{stat.suffix}</span>
+              </p>
+              <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.24em] text-cream/60">
+                {stat.label}
+              </p>
+            </Reveal>
           ))}
         </div>
       </div>

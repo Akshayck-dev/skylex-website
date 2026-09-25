@@ -164,7 +164,7 @@ export function Contact() {
                         />
                       </div>
                       <div className="sm:col-span-2">
-                        <Button type="submit" variant="default" size="lg" className="w-full sm:w-auto">
+                        <Button type="submit" variant="gold" size="lg" className="w-full sm:w-auto">
                           Send Enquiry
                           <ArrowRight aria-hidden="true" />
                         </Button>

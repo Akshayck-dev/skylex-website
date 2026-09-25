@@ -1,195 +1,109 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { NAV_LINKS } from "../data/content";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-const MotionLink = motion(Link);
-
-/** Routes whose hero banner is dark — navbar starts in light mode there. */
-const DARK_HERO_ROUTES = new Set([
-  "/",
-  "/about",
-  "/services",
-  "/projects",
-  "/interiors",
-  "/process",
-  "/contact",
-]);
-
-function Wordmark({ light }: { light: boolean }) {
-  return (
-    <Link to="/" className="group flex flex-col leading-none" aria-label="Skylex Engineering Solutions — home">
-      <span
-        className={cn(
-          "font-display text-[26px] font-semibold tracking-[0.14em] transition-colors duration-500",
-          light ? "text-cream" : "text-charcoal"
-        )}
-      >
-        SKYLEX
-      </span>
-      <span
-        className={cn(
-          "mt-1 text-[9px] font-medium uppercase tracking-[0.42em] transition-colors duration-500",
-          light ? "text-cream/60" : "text-stone"
-        )}
-      >
-        Engineering Solutions
-      </span>
-    </Link>
-  );
-}
-
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open ]);
-
-  const { pathname } = useLocation();
-
-  const light = DARK_HERO_ROUTES.has(pathname) && !scrolled && !open;
+    setOpen(false);
+  }, [pathname]);
 
   return (
-    <>
-      <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-          scrolled
-            ? "border-b border-charcoal/10 bg-cream/85 backdrop-blur-md"
-            : "border-b border-transparent bg-transparent"
-        )}
-      >
-        <div className="mx-auto flex h-20 max-w-shell items-center justify-between px-6 md:px-10 lg:px-16">
-          <Wordmark light={light} />
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 border-b border-cream/10 bg-ink/95 backdrop-blur-md transition-shadow duration-300",
+        scrolled && "shadow-[0_10px_36px_rgba(0,0,0,0.45)]"
+      )}
+    >
+      <div className="mx-auto flex h-[76px] w-full max-w-shell items-center justify-between px-6 md:px-10 lg:px-16">
+        {/* Brand */}
+        <Link to="/" className="flex flex-col leading-none" aria-label="Skylex Engineering Solutions — home">
+          <span className="font-display text-[26px] font-semibold tracking-[0.18em] text-cream">
+            SKYLEX
+          </span>
+          <span className="mt-1 text-[8px] font-medium uppercase tracking-[0.42em] text-gold/80">
+            Engineering Solutions
+          </span>
+        </Link>
 
-          <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={cn(
-                  "group relative text-[12px] font-medium uppercase tracking-[0.2em] transition-colors duration-300",
-                  light ? "text-cream/80 hover:text-cream" : "text-charcoal/70 hover:text-charcoal"
-                )}
-              >
-                {link.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-clay transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
-          </nav>
-
-          <div className="hidden lg:block">
-            <Button
-              variant={light ? "outlineLight" : "default"}
-              size="sm"
-              onClick={() => navigate("/contact")}
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
+              className={cn(
+                "text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-300",
+                pathname === link.href ? "text-gold" : "text-cream/70 hover:text-gold"
+              )}
             >
-              Start a Project
-              <ArrowUpRight aria-hidden="true" />
-            </Button>
-          </div>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
-          <button
-            className={cn(
-              "flex h-11 w-11 items-center justify-center transition-colors lg:hidden",
-              light ? "text-cream" : "text-charcoal"
-            )}
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-          >
-            <Menu className="size-6" />
-          </button>
+        <div className="hidden lg:block">
+          <Button variant="gold" size="sm" onClick={() => navigate("/contact")}>
+            Get a Quote
+            <ArrowUpRight aria-hidden="true" />
+          </Button>
         </div>
-      </motion.header>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: EASE }}
-            className="fixed inset-0 z-[60] flex flex-col bg-charcoal text-cream lg:hidden"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu"
-          >
-            <div className="flex h-20 items-center justify-between px-6">
-              <Wordmark light />
-              <button
-                className="flex h-11 w-11 items-center justify-center text-cream"
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-              >
-                <X className="size-6" />
-              </button>
-            </div>
-            <nav className="flex flex-1 flex-col justify-center gap-2 px-8" aria-label="Mobile">
-              {NAV_LINKS.map((link, i) => (
-                <MotionLink
-                  key={link.href}
+        {/* Mobile toggle */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label={open ? "Close menu" : "Open menu"}
+          className="flex size-11 items-center justify-center rounded-lg border border-cream/15 text-cream transition-colors hover:border-gold hover:text-gold lg:hidden"
+        >
+          {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+        </button>
+      </div>
+
+      {/* Mobile dropdown */}
+      {open && (
+        <nav
+          className="border-t border-cream/10 bg-ink px-6 pb-8 pt-4 lg:hidden"
+          aria-label="Mobile"
+        >
+          <ul className="space-y-1">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
                   to={link.href}
-                  onClick={() => setOpen(false)}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: EASE, delay: 0.1 + i * 0.06 }}
-                  className="group flex items-baseline gap-4 border-b border-cream/10 py-4"
+                  className={cn(
+                    "block rounded-lg px-3 py-3 text-sm font-semibold uppercase tracking-[0.18em] transition-colors",
+                    pathname === link.href
+                      ? "bg-cream/5 text-gold"
+                      : "text-cream/75 hover:bg-cream/5 hover:text-gold"
+                  )}
                 >
-                  <span className="font-display text-sm italic text-clay">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="font-display text-4xl font-medium tracking-tight transition-colors group-hover:text-clay">
-                    {link.label}
-                  </span>
-                </MotionLink>
-              ))}
-            </nav>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: EASE, delay: 0.55 }}
-              className="px-8 pb-12"
-            >
-              <Button
-                variant="clay"
-                size="lg"
-                className="w-full"
-                onClick={() => {
-                  setOpen(false);
-                  navigate("/contact");
-                }}
-              >
-                Start a Project
-                <ArrowUpRight aria-hidden="true" />
-              </Button>
-              <p className="mt-6 text-center text-[11px] uppercase tracking-[0.3em] text-cream/40">
-                Kerala · India
-              </p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Button variant="gold" className="mt-5 w-full" onClick={() => navigate("/contact")}>
+            Get a Quote
+            <ArrowUpRight aria-hidden="true" />
+          </Button>
+        </nav>
+      )}
+    </header>
   );
 }

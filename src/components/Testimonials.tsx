@@ -1,35 +1,44 @@
+import { Star } from "lucide-react";
 import { TESTIMONIALS } from "../data/content";
-import { Eyebrow, Reveal } from "./shared";
+import { Reveal, SectionHead } from "./shared";
 
-/** Minimal editorial quote — no cards, no chrome. */
+/** Arcadia-style testimonial cards with gold star ratings. */
 export function Testimonials() {
-  const t = TESTIMONIALS[0];
-
   return (
-    <section className="bg-cream py-28 md:py-44" aria-label="Client words">
+    <section className="bg-sand py-24 md:py-32" aria-label="Testimonials">
       <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
-        <div className="lg:ml-[8.333%] lg:w-[83.333%]">
-          <Reveal>
-            <Eyebrow>Client words</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <blockquote className="mt-10 font-display text-3xl font-medium leading-[1.18] tracking-tight text-charcoal text-balance md:text-5xl lg:text-[3.4rem]">
-              &ldquo;{t.quote}&rdquo;
-            </blockquote>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <div className="mt-10 flex items-center gap-5">
-              <span className="h-px w-14 bg-clay" aria-hidden="true" />
-              <div>
-                <p className="text-[13px] font-semibold uppercase tracking-[0.22em] text-charcoal">
-                  {t.client}
-                </p>
-                <p className="mt-1.5 text-[12px] uppercase tracking-[0.22em] text-stone">
-                  {t.project}
-                </p>
-              </div>
-            </div>
-          </Reveal>
+        <SectionHead
+          align="center"
+          eyebrow="Testimonials"
+          title="What Our Clients Say"
+          sub="Real stories from real people."
+        />
+
+        <div className="mt-14 grid grid-cols-1 gap-6 md:mt-16 lg:grid-cols-3">
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={t.client} delay={i * 0.08} className="h-full">
+              <figure className="flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-7 md:p-8">
+                <div className="flex gap-1" aria-label="5 out of 5 stars">
+                  {Array.from({ length: 5 }).map((_, s) => (
+                    <Star
+                      key={s}
+                      className="size-4 fill-gold text-gold"
+                      aria-hidden="true"
+                    />
+                  ))}
+                </div>
+                <blockquote className="mt-5 flex-1 font-display text-lg font-normal leading-relaxed text-ink/80 md:text-xl">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-6 border-t border-ink/10 pt-5">
+                  <p className="text-[15px] font-semibold text-ink">{t.client}</p>
+                  <p className="mt-1 text-[13px] uppercase tracking-[0.16em] text-stone">
+                    {t.project}
+                  </p>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
