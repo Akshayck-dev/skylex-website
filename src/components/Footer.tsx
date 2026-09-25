@@ -24,13 +24,12 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-4">
             <Reveal>
-              <Link to="/" className="flex flex-col leading-none" aria-label="Skylex Engineering Solutions — home">
-                <span className="font-display text-[28px] font-semibold tracking-[0.18em] text-cream">
-                  SKYLEX
-                </span>
-                <span className="mt-1.5 text-[9px] font-medium uppercase tracking-[0.42em] text-gold/80">
-                  Engineering Solutions
-                </span>
+              <Link to="/" className="inline-block" aria-label="Skylex Engineering Solutions — home">
+                <img
+                  src="logo.png"
+                  alt="Skylex Engineering Solutions"
+                  className="h-16 w-auto"
+                />
               </Link>
               <p className="mt-6 max-w-xs text-[15px] leading-relaxed text-cream/60">
                 Architecture, construction and interiors — designed with

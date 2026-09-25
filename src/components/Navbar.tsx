@@ -53,13 +53,12 @@ export function Navbar() {
       >
         <div className="mx-auto flex h-[76px] w-full max-w-shell items-center justify-between px-6 md:px-10 lg:px-16">
           {/* Brand */}
-          <Link to="/" className="flex flex-col leading-none" aria-label="Skylex Engineering Solutions — home">
-            <span className="font-display text-[26px] font-semibold tracking-[0.18em] text-cream">
-              SKYLEX
-            </span>
-            <span className="mt-1 text-[8px] font-medium uppercase tracking-[0.42em] text-gold/80">
-              Engineering Solutions
-            </span>
+          <Link to="/" className="flex items-center" aria-label="Skylex Engineering Solutions — home">
+            <img
+              src="logo.png"
+              alt="Skylex Engineering Solutions"
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop nav */}
@@ -119,10 +118,12 @@ export function Navbar() {
               className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-coal shadow-[-24px_0_60px_rgba(0,0,0,0.5)]"
             >
               {/* Panel header */}
-              <div className="flex items-center justify-between border-b border-cream/10 px-6 py-5">
-                <span className="font-display text-lg font-semibold tracking-[0.22em] text-cream">
-                  SKYLEX
-                </span>
+              <div className="flex items-center justify-between border-b border-cream/10 px-6 py-4">
+                <img
+                  src="logo.png"
+                  alt="Skylex Engineering Solutions"
+                  className="h-10 w-auto"
+                />
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
