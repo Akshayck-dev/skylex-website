@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "../components/PageHero";
 import { Reveal, SectionHead } from "../components/shared";
 import { PROJECTS, type Project } from "../data/content";
@@ -63,13 +64,23 @@ export function ProjectsPage() {
             {visible.map((project, i) => (
               <Reveal key={project.index} delay={(i % 3) * 0.07}>
                 <Link to={`/projects/${project.slug}`} className="group block">
-                  <div className="overflow-hidden rounded-2xl">
+                  <div className="relative overflow-hidden rounded-2xl">
                     <img
                       src={project.image}
                       alt={project.imageAlt}
                       loading="lazy"
                       className="aspect-[4/3] w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
                     />
+                    <div
+                      className="absolute inset-0 bg-gold/0 transition-colors duration-500 group-hover:bg-gold/15"
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="absolute bottom-4 right-4 flex size-12 translate-y-3 items-center justify-center rounded-full bg-gold text-ink opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
+                      aria-hidden="true"
+                    >
+                      <ArrowUpRight className="size-5" />
+                    </span>
                   </div>
                   <div className="mt-5">
                     <h3 className="font-display text-2xl font-medium tracking-tight text-ink transition-colors duration-300 group-hover:text-golddeep">

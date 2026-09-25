@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { HashRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import { BackToTop } from "./components/BackToTop";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
+import { Preloader } from "./components/Preloader";
 import { WhatsAppButton } from "./components/WhatsAppButton";
 import { Button } from "./components/ui/button";
 import { destroyLenis, getLenis, scrollToTopInstant } from "./lib/lenis";
@@ -68,6 +70,7 @@ export default function App() {
         </a>
         <ScrollToTop />
         <SmoothScroll />
+        <Preloader />
         <Navbar />
         <main id="main">
           <Routes>
@@ -85,6 +88,7 @@ export default function App() {
         <Footer />
         <MobileStickyCTA />
         <WhatsAppButton />
+        <BackToTop />
       </div>
     </HashRouter>
   );

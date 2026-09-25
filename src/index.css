@@ -41,6 +41,18 @@
     .animate-marquee { animation: none; }
   }
 
+  /* Slow Ken Burns drift for hero imagery */
+  @keyframes kenburns {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+  }
+  .animate-kenburns {
+    animation: kenburns 22s ease-in-out infinite alternate;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-kenburns { animation: none; }
+  }
+
   /* Thin elegant scrollbar */
   ::-webkit-scrollbar {
     width: 10px;

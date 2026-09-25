@@ -12,11 +12,11 @@ export function Hero() {
   return (
     <section className="relative flex min-h-[100svh] flex-col bg-ink" aria-label="Introduction">
       {/* Background */}
-      <div className="absolute inset-0" aria-hidden="true">
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <img
           src={IMAGES.hero}
           alt=""
-          className="h-full w-full object-cover"
+          className="h-full w-full animate-kenburns object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/25" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/40" />
