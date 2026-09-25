@@ -148,18 +148,10 @@ export function Navbar() {
                         <Link
                           to={link.href}
                           className={cn(
-                            "group flex items-baseline gap-4 rounded-xl px-3 py-3 transition-colors",
+                            "group flex items-center rounded-xl px-3 py-3 transition-colors",
                             active ? "bg-cream/5" : "hover:bg-cream/5"
                           )}
                         >
-                          <span
-                            className={cn(
-                              "font-display text-sm italic",
-                              active ? "text-gold" : "text-cream/35 group-hover:text-gold"
-                            )}
-                          >
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
                           <span
                             className={cn(
                               "font-display text-[28px] font-medium tracking-tight transition-colors",
