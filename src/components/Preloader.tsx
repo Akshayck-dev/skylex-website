@@ -51,7 +51,7 @@ export function Preloader() {
               initial={{ x: "-100%" }}
               animate={{ x: "0%" }}
               transition={{ duration: 1.3, ease: "easeInOut" }}
-              className="h-full w-full bg-gold"
+              className="h-full w-full bg-tealbright"
             />
           </div>
         </motion.div>

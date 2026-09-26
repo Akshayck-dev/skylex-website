@@ -42,10 +42,10 @@ interface ClipRevealProps {
   delay?: number;
 }
 
-/** Cinematic clip-path image reveal — sharp editorial frame, no rounding. */
+/** Cinematic clip-path image reveal with soft rounding. */
 export function ClipReveal({ children, className, delay = 0 }: ClipRevealProps) {
   return (
-    <div className={cn("overflow-hidden", className)}>
+    <div className={cn("overflow-hidden rounded-2xl", className)}>
       <motion.div
         initial={{ clipPath: "inset(8% 6% 8% 6%)", opacity: 0.4, scale: 1.04 }}
         whileInView={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1, scale: 1 }}
@@ -64,13 +64,13 @@ interface EyebrowProps {
   light?: boolean;
 }
 
-/** Small tracked-caps section label, e.g. "01 — About Us". */
+/** Small tracked-caps section label, Brique-style. */
 export function Eyebrow({ children, className, light = false }: EyebrowProps) {
   return (
     <p
       className={cn(
-        "text-[11px] font-medium uppercase tracking-[0.32em]",
-        light ? "text-cream/60" : "text-stone",
+        "text-[12px] font-semibold uppercase tracking-[0.3em]",
+        light ? "text-tealbright" : "text-brand",
         className
       )}
     >
@@ -102,8 +102,8 @@ export function SectionHeading({
       <Reveal delay={0.08}>
         <h2
           className={cn(
-            "mt-5 font-display text-5xl font-medium leading-[1.05] tracking-tight text-balance md:text-6xl lg:text-7xl",
-            light ? "text-cream" : "text-charcoal"
+            "section-heading",
+            light ? "text-white" : "text-ink"
           )}
         >
           {title}
@@ -124,7 +124,7 @@ interface SectionHeadProps {
 }
 
 /**
- * Arcadia-style section header: gold eyebrow, serif title,
+ * Brique-style section header: teal eyebrow, Forum title,
  * optional sub copy with a "View all →" link at the right.
  */
 export function SectionHead({
@@ -141,8 +141,8 @@ export function SectionHead({
       <Reveal>
         <p
           className={cn(
-            "text-[11px] font-semibold uppercase tracking-[0.32em]",
-            dark ? "text-gold" : "text-golddeep"
+            "text-[12px] font-semibold uppercase tracking-[0.3em]",
+            dark ? "text-tealbright" : "text-brand"
           )}
         >
           {eyebrow}
@@ -150,15 +150,15 @@ export function SectionHead({
       </Reveal>
       <div
         className={cn(
-          "mt-5 flex flex-col gap-6",
+          "mt-4 flex flex-col gap-6",
           align === "center" ? "items-center" : "md:flex-row md:items-end md:justify-between"
         )}
       >
         <Reveal delay={0.06}>
           <h2
             className={cn(
-              "max-w-2xl font-display text-4xl font-medium leading-[1.08] tracking-tight text-balance md:text-5xl lg:text-6xl",
-              dark ? "text-cream" : "text-ink"
+              "max-w-2xl font-display text-4xl leading-[1.1] text-balance md:text-5xl lg:text-6xl",
+              dark ? "text-white" : "text-ink"
             )}
           >
             {title}
@@ -167,7 +167,7 @@ export function SectionHead({
             <p
               className={cn(
                 "mt-4 max-w-xl text-base leading-relaxed",
-                dark ? "text-cream/65" : "text-ink/60"
+                dark ? "text-white/65" : "text-ink/60"
               )}
             >
               {sub}
@@ -180,7 +180,7 @@ export function SectionHead({
               href={link.href}
               className={cn(
                 "group inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.2em] transition-colors",
-                dark ? "text-gold hover:text-goldsoft" : "text-golddeep hover:text-ink"
+                dark ? "text-tealbright hover:text-white" : "text-brand hover:text-ink"
               )}
             >
               {link.label}

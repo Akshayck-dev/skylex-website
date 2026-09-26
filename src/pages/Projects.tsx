@@ -49,7 +49,7 @@ export function ProjectsPage() {
                   className={cn(
                     "rounded-full px-6 py-2.5 text-[13px] font-semibold uppercase tracking-[0.16em] transition-all duration-300",
                     tab === t
-                      ? "bg-gold text-ink shadow-[0_8px_24px_rgba(201,162,75,0.35)]"
+                      ? "bg-brand text-white shadow-[0_8px_24px_rgba(201,162,75,0.35)]"
                       : "border border-ink/20 bg-transparent text-ink/65 hover:border-golddeep hover:text-golddeep"
                   )}
                 >
@@ -76,7 +76,7 @@ export function ProjectsPage() {
                       aria-hidden="true"
                     />
                     <span
-                      className="absolute bottom-4 right-4 flex size-12 translate-y-3 items-center justify-center rounded-full bg-gold text-ink opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
+                      className="absolute bottom-4 right-4 flex size-12 translate-y-3 items-center justify-center rounded-full bg-brand text-white opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
                       aria-hidden="true"
                     >
                       <ArrowUpRight className="size-5" />

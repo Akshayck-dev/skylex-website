@@ -75,7 +75,7 @@ export function AboutPage() {
       </section>
 
       {/* Dark stats band */}
-      <section className="bg-ink py-20 md:py-24" aria-label="Studio facts">
+      <section className="bg-white py-20 md:py-24" aria-label="Studio facts">
         <div className="mx-auto grid max-w-shell grid-cols-2 gap-y-12 px-6 md:px-10 lg:grid-cols-4 lg:px-16">
           {STATS.map((stat, i) => (
             <Reveal key={stat.label} delay={i * 0.06} className="text-center">
@@ -83,7 +83,7 @@ export function AboutPage() {
                 {stat.value}
                 {stat.suffix}
               </p>
-              <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-cream/55">
+              <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-ink/55">
                 {stat.label}
               </p>
             </Reveal>
@@ -109,7 +109,7 @@ export function AboutPage() {
             ].map(({ Icon, title, text }, i) => (
               <Reveal key={title} delay={i * 0.08}>
                 <div className="h-full rounded-2xl bg-sand p-9 md:p-12">
-                  <span className="flex size-14 items-center justify-center rounded-2xl bg-gold text-ink">
+                  <span className="flex size-14 items-center justify-center rounded-2xl bg-brand text-white">
                     <Icon className="size-6" aria-hidden="true" />
                   </span>
                   <h3 className="mt-7 font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">

@@ -18,7 +18,7 @@ const CONTACT_LINES = [
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-cream">
+    <footer className="bg-branddeep text-white">
       <div className="mx-auto max-w-shell px-6 pb-24 pt-20 md:px-10 md:pb-10 md:pt-24 lg:px-16">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-12">
           {/* Brand */}
@@ -31,7 +31,7 @@ export function Footer() {
                   className="h-16 w-auto"
                 />
               </Link>
-              <p className="mt-6 max-w-xs text-[15px] leading-relaxed text-cream/60">
+              <p className="mt-6 max-w-xs text-[15px] leading-relaxed text-white/60">
                 Architecture, construction and interiors — designed with
                 intent, engineered to last, and built for the way you live.
               </p>
@@ -41,7 +41,7 @@ export function Footer() {
                     key={label}
                     href={href}
                     aria-label={`Skylex on ${label}`}
-                    className="flex size-10 items-center justify-center rounded-full border border-cream/20 text-[11px] font-semibold tracking-[0.08em] text-cream/70 transition-colors duration-300 hover:border-gold hover:text-gold"
+                    className="flex size-10 items-center justify-center rounded-full border border-white/20 text-[11px] font-semibold tracking-[0.08em] text-white/70 transition-colors duration-300 hover:border-tealbright hover:text-tealbright"
                   >
                     {short}
                   </a>
@@ -53,7 +53,7 @@ export function Footer() {
           {/* Quick links */}
           <nav className="lg:col-span-2 lg:col-start-6" aria-label="Footer">
             <Reveal delay={0.05}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-gold">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-tealbright">
                 Quick Links
               </p>
               <ul className="mt-6 space-y-3.5">
@@ -61,7 +61,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       to={link.href}
-                      className="text-[15px] text-cream/65 transition-colors duration-300 hover:text-gold"
+                      className="text-[15px] text-white/65 transition-colors duration-300 hover:text-tealbright"
                     >
                       {link.label}
                     </Link>
@@ -74,7 +74,7 @@ export function Footer() {
           {/* Services */}
           <div className="lg:col-span-3">
             <Reveal delay={0.1}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-gold">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-tealbright">
                 Our Services
               </p>
               <ul className="mt-6 space-y-3.5">
@@ -82,7 +82,7 @@ export function Footer() {
                   <li key={service.index}>
                     <Link
                       to="/services"
-                      className="text-[15px] text-cream/65 transition-colors duration-300 hover:text-gold"
+                      className="text-[15px] text-white/65 transition-colors duration-300 hover:text-tealbright"
                     >
                       {service.name}
                     </Link>
@@ -95,16 +95,16 @@ export function Footer() {
           {/* Contact */}
           <div className="lg:col-span-2">
             <Reveal delay={0.15}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-gold">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-tealbright">
                 Contact
               </p>
               <ul className="mt-6 space-y-4">
                 {CONTACT_LINES.map(({ Icon, label, value }) => (
                   <li key={label} className="flex items-start gap-3">
-                    <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg bg-cream/5 text-gold">
+                    <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-tealbright">
                       <Icon className="size-4" aria-hidden="true" />
                     </span>
-                    <span className="text-[15px] leading-relaxed text-cream/65">
+                    <span className="text-[15px] leading-relaxed text-white/65">
                       <span className="sr-only">{label}: </span>
                       {value}
                     </span>
@@ -116,11 +116,11 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-cream/10 py-8 md:flex-row md:items-center">
-          <p className="text-[11px] uppercase tracking-[0.22em] text-cream/40">
+        <div className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-white/10 py-8 md:flex-row md:items-center">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-white/40">
             © 2026 Skylex Engineering Solutions
           </p>
-          <p className="text-[11px] uppercase tracking-[0.22em] text-cream/40">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-white/40">
             Architecture · Construction · Interiors
           </p>
         </div>

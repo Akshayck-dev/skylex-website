@@ -1,3 +1,8 @@
+@import "@fontsource/forum";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,13 +19,35 @@
   }
 
   ::selection {
-    background: #c9a24b;
-    color: #14110b;
+    background: #04566d;
+    color: #ffffff;
   }
 
   :focus-visible {
-    outline: 2px solid #c9a24b;
+    outline: 2px solid #048a93;
     outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Brique-style section eyebrow: small caps label */
+  .section-title {
+    @apply text-[12px] font-semibold uppercase tracking-[0.3em] text-brand;
+  }
+
+  /* Brique-style section heading: Forum display */
+  .section-heading {
+    @apply mt-4 font-display text-4xl leading-[1.1] text-ink text-balance md:text-5xl lg:text-6xl;
+  }
+
+  /* Outlined display text (CTA banner, like Brique's "Get In Touch") */
+  .text-stroke {
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.85);
+    color: transparent;
+  }
+  .text-stroke-brand {
+    -webkit-text-stroke: 1.5px rgba(4, 86, 109, 0.55);
+    color: transparent;
   }
 }
 
@@ -53,18 +80,43 @@
     .animate-kenburns { animation: none; }
   }
 
+  /* FAQ accordion */
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .faq-answer.open {
+    grid-template-rows: 1fr;
+  }
+  .faq-answer > div {
+    overflow: hidden;
+  }
+
+  /* Hero progress segment fill */
+  @keyframes heroprogress {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  .animate-heroprogress {
+    animation: heroprogress linear forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-heroprogress { animation: none; }
+  }
+
   /* Thin elegant scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #faf7f0;
+    background: #f4f7fa;
   }
   ::-webkit-scrollbar-thumb {
-    background: #c9c0a8;
+    background: #b9cdd4;
     border-radius: 0;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #c9a24b;
+    background: #04566d;
   }
 }

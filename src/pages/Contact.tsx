@@ -57,7 +57,7 @@ export function ContactPage() {
               {INFO_CARDS.map(({ Icon, title, lines }, i) => (
                 <Reveal key={title} delay={i * 0.06}>
                   <div className="flex items-start gap-5 rounded-2xl border border-ink/10 bg-white p-6">
-                    <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gold text-ink">
+                    <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-brand text-white">
                       <Icon className="size-5" aria-hidden="true" />
                     </span>
                     <div>

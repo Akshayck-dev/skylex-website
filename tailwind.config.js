@@ -4,23 +4,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        /* Arcadia-style premium system */
-        ink: "#14110B",
-        coal: "#1E1A12",
-        gold: "#C9A24B",
-        goldsoft: "#E3C878",
-        golddeep: "#9A7A33",
-        cream: "#FAF7F0",
-        sand: "#F0E9D8",
-        /* legacy tokens (kept for compatibility) */
-        charcoal: "#171512",
-        beige: "#ECE6D8",
-        stone: "#8A8478",
-        clay: "#A2592F",
+        /* Brique-style light + deep-teal system */
+        ink: "#132A33",
+        brand: "#04566D",
+        branddark: "#0A3542",
+        branddeep: "#0B2129",
+        teal: "#048A93",
+        tealbright: "#0EB8C4",
+        mist: "#F4F7FA",
+        fog: "#EDF1F4",
+        smoke: "#787878",
+        /* legacy tokens — remapped, kept for compatibility */
+        coal: "#F4F7FA",
+        gold: "#04566D",
+        goldsoft: "#0EB8C4",
+        golddeep: "#048A93",
+        cream: "#FFFFFF",
+        sand: "#EDF1F4",
+        charcoal: "#132A33",
+        beige: "#EDF1F4",
+        stone: "#787878",
+        clay: "#04566D",
       },
       fontFamily: {
-        display: ['"Fraunces"', "Georgia", "serif"],
-        sans: ["Manrope", "system-ui", "-apple-system", "sans-serif"],
+        display: ['"Forum"', "Georgia", "serif"],
+        sans: ["Poppins", "system-ui", "-apple-system", "sans-serif"],
       },
       maxWidth: {
         shell: "1400px",

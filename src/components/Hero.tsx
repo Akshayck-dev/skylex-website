@@ -1,90 +1,165 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IMAGES, STATS } from "../data/content";
-import { useCountUp } from "../hooks/useCountUp";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { HERO_SLIDES } from "../data/content";
 import { cn } from "../lib/utils";
-import { Reveal } from "./shared";
 import { Button } from "./ui/button";
+import { Reveal } from "./shared";
 
-/** Arcadia-style full-screen dark hero with stats strip. */
+const SLIDE_HEADINGS = [
+  <>Building Homes.<br />Creating Lifestyles.</>,
+  <>Designing your<br />perfect space</>,
+  <>Beauty in<br />every detail</>,
+  <>Where design<br />meets comfort</>,
+];
+
+const AUTOPLAY_MS = 5200;
+
+/** Brique-style full-width slider hero with Forum headlines. */
 export function Hero() {
   const navigate = useNavigate();
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const timer = useRef<number | null>(null);
+
+  const go = useCallback((i: number) => {
+    setActive(((i % HERO_SLIDES.length) + HERO_SLIDES.length) % HERO_SLIDES.length);
+  }, []);
+
+  useEffect(() => {
+    if (paused) return;
+    timer.current = window.setTimeout(() => go(active + 1), AUTOPLAY_MS);
+    return () => {
+      if (timer.current) window.clearTimeout(timer.current);
+    };
+  }, [active, paused, go]);
+
+  const slide = HERO_SLIDES[active];
 
   return (
-    <section className="relative flex min-h-[100svh] flex-col bg-ink" aria-label="Introduction">
-      {/* Background */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <img
-          src={IMAGES.hero}
-          alt=""
-          className="h-full w-full animate-kenburns object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/40" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 mx-auto flex w-full max-w-shell flex-1 flex-col justify-center px-6 pb-16 pt-36 md:px-10 md:pt-40 lg:px-16">
-        <Reveal>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">
-            Construction · Interiors · Turnkey
-          </p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h1 className="mt-6 max-w-4xl font-display text-6xl font-medium leading-[1.02] tracking-tight text-cream text-balance md:text-7xl lg:text-8xl">
-            Building Homes.
-            <br />
-            Creating Lifestyles.
-          </h1>
-        </Reveal>
-        <Reveal delay={0.16}>
-          <p className="mt-7 max-w-xl text-base leading-relaxed text-cream/70 md:text-lg">
-            From concept to completion, we design and build beautiful spaces
-            that inspire better living.
-          </p>
-        </Reveal>
-        <Reveal delay={0.24}>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Button variant="gold" size="lg" onClick={() => navigate("/projects")}>
-              Explore Projects
-            </Button>
-            <Button variant="outlineLight" size="lg" onClick={() => navigate("/contact")}>
-              Get Consultation
-            </Button>
+    <section
+      className="relative overflow-hidden bg-mist pt-[112px]"
+      aria-label="Introduction"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Slides */}
+      <div className="relative h-[78svh] min-h-[560px] w-full">
+        {HERO_SLIDES.map((s, i) => (
+          <div
+            key={s.image}
+            className={cn(
+              "absolute inset-0 transition-opacity duration-[1200ms] ease-out",
+              i === active ? "opacity-100" : "pointer-events-none opacity-0"
+            )}
+            aria-hidden={i !== active}
+          >
+            <img
+              src={s.image}
+              alt=""
+              className={cn("h-full w-full object-cover", i === active && "animate-kenburns")}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-branddeep/85 via-branddeep/45 to-branddeep/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-branddeep/60 via-transparent to-transparent" />
           </div>
-        </Reveal>
-      </div>
+        ))}
 
-      {/* Stats strip */}
-      <div className="relative z-10 border-t border-cream/15">
-        <div className="mx-auto grid max-w-shell grid-cols-2 px-6 md:grid-cols-4 md:px-10 lg:px-16">
-          {STATS.map((stat, i) => (
-            <StatCell key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} index={i} />
-          ))}
+        {/* Giant watermark letter, like Brique's mark-slider */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-display text-[26rem] leading-none text-white/10 lg:block"
+        >
+          S
+        </span>
+
+        {/* Content */}
+        <div className="absolute inset-0">
+          <div className="mx-auto flex h-full w-full max-w-shell flex-col justify-center px-6 md:px-10 lg:px-16">
+            <Reveal key={`eyebrow-${active}`}>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-tealbright">
+                Construction · Interiors · Turnkey
+              </p>
+            </Reveal>
+            <h1
+              key={`heading-${active}`}
+              className="mt-6 max-w-4xl font-display text-6xl leading-[1.02] text-white text-balance md:text-7xl lg:text-8xl"
+            >
+              {SLIDE_HEADINGS[active]}
+            </h1>
+            <Reveal key={`cta-${active}`} delay={0.15}>
+              <div className="mt-10">
+                <Button variant="gold" size="lg" onClick={() => navigate("/contact")}>
+                  Start Your Project
+                </Button>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* Bottom bar: caption + controls */}
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="mx-auto flex w-full max-w-shell items-end justify-between gap-6 px-6 pb-8 md:px-10 lg:px-16">
+            <div key={`cap-${active}`} className="text-white">
+              <p className="font-display text-2xl">{slide.name}</p>
+              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.28em] text-white/60">
+                {slide.location} · {slide.year}
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => go(active - 1)}
+                aria-label="Previous slide"
+                className="flex size-11 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:border-tealbright hover:text-tealbright"
+              >
+                <ArrowLeft className="size-4" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                onClick={() => go(active + 1)}
+                aria-label="Next slide"
+                className="flex size-11 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:border-tealbright hover:text-tealbright"
+              >
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+          {/* Progress segments */}
+          <div className="flex gap-2 px-6 pb-6 md:px-10 lg:px-16">
+            <div className="mx-auto flex w-full max-w-shell gap-2">
+              {HERO_SLIDES.map((s, i) => (
+                <button
+                  key={s.image}
+                  type="button"
+                  onClick={() => go(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className="group h-6 flex-1"
+                >
+                  <span
+                    className={cn(
+                      "block h-[3px] w-full overflow-hidden rounded-full bg-white/25",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "block h-full rounded-full bg-tealbright",
+                        i === active && !paused && "animate-heroprogress",
+                        i < active && "w-full",
+                        i > active && "w-0"
+                      )}
+                      style={
+                        i === active && !paused
+                          ? { animationDuration: `${AUTOPLAY_MS}ms` }
+                          : undefined
+                      }
+                    />
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function StatCell({ value, suffix, label, index: i }: { value: number; suffix: string; label: string; index: number }) {
-  const { ref, value: n } = useCountUp(value);
-  return (
-    <Reveal
-      delay={i * 0.06}
-      className={cn(
-        "py-8 md:py-10",
-        i > 0 && "border-l border-cream/15 pl-6 md:pl-10",
-        i >= 2 && "max-md:border-t max-md:border-cream/15",
-        i === 2 && "max-md:border-l-0 max-md:pl-0"
-      )}
-    >
-      <p className="font-display text-4xl font-medium text-cream md:text-5xl">
-        <span ref={ref}>{n}</span>
-        <span className="text-gold">{suffix}</span>
-      </p>
-      <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.24em] text-cream/60">
-        {label}
-      </p>
-    </Reveal>
   );
 }

@@ -77,12 +77,12 @@ export function InteriorsPage() {
                     />
                     <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-7">
                       <div>
-                        <h3 className="font-display text-2xl font-medium tracking-tight text-cream md:text-[1.7rem]">
+                        <h3 className="font-display text-2xl font-medium tracking-tight text-ink md:text-[1.7rem]">
                           {category}
                         </h3>
-                        <p className="mt-1.5 text-[15px] text-cream/70">{meta.sub}</p>
+                        <p className="mt-1.5 text-[15px] text-ink/70">{meta.sub}</p>
                       </div>
-                      <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-cream/40 text-cream transition-all duration-300 group-hover:border-gold group-hover:bg-gold group-hover:text-ink">
+                      <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-ink/40 text-ink transition-all duration-300 group-hover:border-gold group-hover:bg-brand group-hover:text-white">
                         <ArrowUpRight className="size-4" aria-hidden="true" />
                       </span>
                     </div>

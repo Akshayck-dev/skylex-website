@@ -354,3 +354,36 @@ export const BUDGET_RANGES = [
   "₹2 Crore+",
   "To be discussed",
 ];
+
+export interface Faq {
+  question: string;
+  answer: string;
+}
+
+export const FAQS: Faq[] = [
+  {
+    question: "What services does Skylex offer?",
+    answer:
+      "Architecture, construction, interior design and turnkey project delivery — from the first sketch to final handover, handled by our own engineers and designers.",
+  },
+  {
+    question: "How much does it cost to build with Skylex?",
+    answer:
+      "Every project is estimated in detail after a site study and design discussion. Share your plot and requirements with us and we will prepare a transparent, itemised estimate — no hidden heads, no surprises mid-way.",
+  },
+  {
+    question: "Do you take up turnkey projects?",
+    answer:
+      "Yes. With a turnkey contract you sign once and we take care of everything — design, approvals support, construction, interiors and finishing — with weekly progress updates until handover.",
+  },
+  {
+    question: "How long does a typical project take?",
+    answer:
+      "A custom residence usually takes 10–14 months from foundation to handover; interior-only projects run 8–16 weeks. We commit to a schedule up front and report progress every week.",
+  },
+  {
+    question: "Do you work outside Kerala?",
+    answer:
+      "Our core work is across Kerala — Kochi, Kozhikode, Thrissur and beyond — and we take up select projects in neighbouring states for the right fit.",
+  },
+];

@@ -57,7 +57,7 @@ export function ProjectDetailPage() {
               </div>
             </Reveal>
             <Reveal delay={0.1} className="lg:col-span-5">
-              <div className="rounded-2xl bg-ink p-8 md:p-10">
+              <div className="rounded-2xl bg-white p-8 md:p-10">
                 <p className="text-xs font-bold uppercase tracking-[0.28em] text-gold">
                   Project facts
                 </p>
@@ -65,12 +65,12 @@ export function ProjectDetailPage() {
                   {facts.map((fact) => (
                     <div
                       key={fact.label}
-                      className="flex items-baseline justify-between border-b border-cream/10 pb-5"
+                      className="flex items-baseline justify-between border-b border-ink/10 pb-5"
                     >
-                      <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/50">
+                      <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/50">
                         {fact.label}
                       </dt>
-                      <dd className="font-display text-xl text-cream">{fact.value}</dd>
+                      <dd className="font-display text-xl text-ink">{fact.value}</dd>
                     </div>
                   ))}
                 </dl>
@@ -114,7 +114,7 @@ export function ProjectDetailPage() {
       </section>
 
       {/* Next project */}
-      <section className="border-t border-cream/10 bg-ink py-20 md:py-24">
+      <section className="border-t border-ink/10 bg-white py-20 md:py-24">
         <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
           <Link
             to={`/projects/${next.slug}`}
@@ -125,14 +125,14 @@ export function ProjectDetailPage() {
                 <ArrowLeft className="size-4 rotate-180 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                 Next project
               </p>
-              <p className="mt-3 font-display text-4xl font-medium text-cream transition-colors group-hover:text-gold md:text-5xl">
+              <p className="mt-3 font-display text-4xl font-medium text-ink transition-colors group-hover:text-gold md:text-5xl">
                 {next.name}
               </p>
-              <p className="mt-2 text-sm uppercase tracking-[0.2em] text-cream/50">
+              <p className="mt-2 text-sm uppercase tracking-[0.2em] text-ink/50">
                 {next.category} · {next.location}
               </p>
             </div>
-            <span className="hidden size-16 shrink-0 items-center justify-center rounded-full border border-cream/20 text-cream transition-all duration-300 group-hover:border-gold group-hover:bg-gold group-hover:text-ink sm:flex">
+            <span className="hidden size-16 shrink-0 items-center justify-center rounded-full border border-ink/20 text-ink transition-all duration-300 group-hover:border-gold group-hover:bg-brand group-hover:text-white sm:flex">
               <ArrowRight className="size-6" aria-hidden="true" />
             </span>
           </Link>

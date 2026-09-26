@@ -1,42 +1,50 @@
 import { useNavigate } from "react-router-dom";
-import { IMAGES } from "../data/content";
+import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./shared";
 import { Button } from "./ui/button";
 
-/** Arcadia-style closing band — rounded image panel on ink. */
+/** Brique-style "Get In Touch" banner with outlined display text. */
 export function CTA() {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-ink py-24 md:py-32" aria-label="Call to action">
-      <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
+    <section className="relative overflow-hidden bg-brand py-20 md:py-28" aria-label="Call to action">
+      {/* Decorative rings */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 -top-32 size-[480px] rounded-full border-[36px] border-white/[0.06]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-40 -left-24 size-[420px] rounded-full border-[28px] border-white/[0.06]"
+      />
+
+      <div className="relative mx-auto w-full max-w-shell px-6 text-center md:px-10 lg:px-16">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl">
-            <img
-              src={IMAGES.cta}
-              alt=""
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 bg-ink/70" aria-hidden="true" />
-            <div className="relative z-10 mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
-              <h2 className="font-display text-5xl font-medium leading-[1.05] tracking-tight text-cream text-balance md:text-6xl lg:text-7xl">
-                Let&rsquo;s Build Your Vision.
-              </h2>
-              <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-cream/70 md:text-lg">
-                Whether it&rsquo;s a new home, office space or an interior
-                makeover, we&rsquo;re here to make it happen.
-              </p>
-              <Button
-                variant="gold"
-                size="lg"
-                className="mt-10"
-                onClick={() => navigate("/contact")}
-              >
-                Get in Touch
-              </Button>
-            </div>
+          <h2 className="font-display text-6xl leading-[1.02] text-white md:text-8xl lg:text-9xl">
+            Get <span className="text-stroke">In Touch</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
+            Have a plot, a plan — or just an idea? Tell us where you are and
+            we'll take it from there.
+          </p>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Button
+              variant="dark"
+              size="lg"
+              onClick={() => navigate("/contact")}
+              className="bg-white text-brand hover:bg-branddeep hover:text-white"
+            >
+              Start Your Project
+              <ArrowUpRight aria-hidden="true" />
+            </Button>
+            <Button variant="outlineLight" size="lg" onClick={() => navigate("/projects")}>
+              View Our Work
+            </Button>
           </div>
         </Reveal>
       </div>

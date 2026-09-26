@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, Mail, Menu, Phone, X } from "lucide-react";
 import { CONTACT, NAV_LINKS } from "../data/content";
 import { cn } from "../lib/utils";
 import { getLenis } from "../lib/lenis";
@@ -45,54 +45,73 @@ export function Navbar() {
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b border-cream/10 bg-ink/95 backdrop-blur-md transition-shadow duration-300",
-          scrolled && "shadow-[0_10px_36px_rgba(0,0,0,0.45)]"
-        )}
-      >
-        <div className="mx-auto flex h-[76px] w-full max-w-shell items-center justify-between px-6 md:px-10 lg:px-16">
-          {/* Brand */}
-          <Link to="/" className="flex items-center" aria-label="Skylex Engineering Solutions — home">
-            <img
-              src="logo.png"
-              alt="Skylex Engineering Solutions"
-              className="h-12 w-auto"
-            />
-          </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={cn(
-                  "text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-300",
-                  pathname === link.href ? "text-gold" : "text-cream/70 hover:text-gold"
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="hidden lg:block">
-            <Button variant="gold" size="sm" onClick={() => navigate("/contact")}>
-              Get a Quote
-              <ArrowUpRight aria-hidden="true" />
-            </Button>
+      <header className="fixed inset-x-0 top-0 z-50">
+        {/* Top bar */}
+        <div className="bg-branddeep text-white">
+          <div className="mx-auto flex h-9 w-full max-w-shell items-center justify-between px-6 text-[11px] tracking-[0.08em] md:px-10 lg:px-16">
+            <p className="hidden items-center gap-2 text-white/70 sm:flex">
+              <Mail className="size-3.5 text-tealbright" aria-hidden="true" />
+              {CONTACT.email}
+            </p>
+            <p className="flex items-center gap-2 text-white/70">
+              <Phone className="size-3.5 text-tealbright" aria-hidden="true" />
+              {CONTACT.phone}
+            </p>
           </div>
+        </div>
 
-          {/* Mobile toggle */}
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-            className="flex size-11 items-center justify-center rounded-lg border border-cream/15 text-cream transition-colors hover:border-gold hover:text-gold lg:hidden"
-          >
-            <Menu className="size-5" aria-hidden="true" />
-          </button>
+        {/* Main bar */}
+        <div
+          className={cn(
+            "border-b border-ink/10 bg-white/95 backdrop-blur-md transition-shadow duration-300",
+            scrolled && "shadow-[0_10px_36px_rgba(4,86,109,0.12)]"
+          )}
+        >
+          <div className="mx-auto flex h-[76px] w-full max-w-shell items-center justify-between px-6 md:px-10 lg:px-16">
+            {/* Brand — Forum wordmark */}
+            <Link to="/" className="flex flex-col leading-none" aria-label="Skylex Engineering Solutions — home">
+              <span className="font-display text-[30px] tracking-[0.08em] text-brand">
+                SKYLEX
+              </span>
+              <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.42em] text-ink/50">
+                Engineering Solutions
+              </span>
+            </Link>
+
+            {/* Desktop nav */}
+            <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={cn(
+                    "relative text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-300",
+                    "after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:bg-teal after:transition-transform after:duration-500 hover:after:origin-left hover:after:scale-x-100",
+                    pathname === link.href ? "text-brand after:scale-x-100" : "text-ink/70 hover:text-brand"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="hidden lg:block">
+              <Button variant="gold" size="sm" onClick={() => navigate("/contact")}>
+                Get a Quote
+                <ArrowUpRight aria-hidden="true" />
+              </Button>
+            </div>
+
+            {/* Mobile toggle */}
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              className="flex size-11 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-brand hover:text-brand lg:hidden"
+            >
+              <Menu className="size-5" aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -107,7 +126,7 @@ export function Navbar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setOpen(false)}
-              className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
+              className="absolute inset-0 bg-branddeep/70 backdrop-blur-sm"
             />
             {/* Panel */}
             <motion.aside
@@ -115,20 +134,23 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-coal shadow-[-24px_0_60px_rgba(0,0,0,0.5)]"
+              className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-branddeep shadow-[-24px_0_60px_rgba(0,0,0,0.5)]"
             >
               {/* Panel header */}
-              <div className="flex items-center justify-between border-b border-cream/10 px-6 py-4">
-                <img
-                  src="logo.png"
-                  alt="Skylex Engineering Solutions"
-                  className="h-10 w-auto"
-                />
+              <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+                <span className="flex flex-col leading-none">
+                  <span className="font-display text-[24px] tracking-[0.08em] text-white">
+                    SKYLEX
+                  </span>
+                  <span className="mt-1 text-[8px] font-semibold uppercase tracking-[0.42em] text-white/50">
+                    Engineering Solutions
+                  </span>
+                </span>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
                   aria-label="Close menu"
-                  className="flex size-10 items-center justify-center rounded-full border border-cream/15 text-cream transition-colors hover:border-gold hover:text-gold"
+                  className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-tealbright hover:text-tealbright"
                 >
                   <X className="size-5" aria-hidden="true" />
                 </button>
@@ -150,13 +172,13 @@ export function Navbar() {
                           to={link.href}
                           className={cn(
                             "group flex items-center rounded-xl px-3 py-3 transition-colors",
-                            active ? "bg-cream/5" : "hover:bg-cream/5"
+                            active ? "bg-white/5" : "hover:bg-white/5"
                           )}
                         >
                           <span
                             className={cn(
-                              "font-display text-[28px] font-medium tracking-tight transition-colors",
-                              active ? "text-gold" : "text-cream group-hover:text-gold"
+                              "font-display text-[28px] tracking-wide transition-colors",
+                              active ? "text-tealbright" : "text-white group-hover:text-tealbright"
                             )}
                           >
                             {link.label}
@@ -173,12 +195,12 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.4, ease: EASE }}
-                className="border-t border-cream/10 px-6 py-6"
+                className="border-t border-white/10 px-6 py-6"
               >
-                <p className="text-xs uppercase tracking-[0.2em] text-cream/45">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/45">
                   {CONTACT.phone}
                 </p>
-                <p className="mt-1 text-xs uppercase tracking-[0.2em] text-cream/45">
+                <p className="mt-1 text-xs uppercase tracking-[0.2em] text-white/45">
                   {CONTACT.email}
                 </p>
                 <Button

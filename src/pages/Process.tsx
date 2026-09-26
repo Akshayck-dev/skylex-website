@@ -65,7 +65,7 @@ export function ProcessPage() {
               {PROCESS_STEPS.map((step, i) => (
                 <Reveal key={step.index} delay={i * 0.07}>
                   <li className="relative flex flex-col items-center text-center">
-                    <span className="relative z-10 flex size-14 items-center justify-center rounded-full bg-ink font-display text-lg font-medium text-gold shadow-[0_10px_30px_rgba(20,17,11,0.25)]">
+                    <span className="relative z-10 flex size-14 items-center justify-center rounded-full bg-white font-display text-lg font-medium text-gold shadow-[0_10px_30px_rgba(20,17,11,0.25)]">
                       {step.index}
                     </span>
                     <h3 className="mt-6 font-display text-2xl font-medium tracking-tight text-ink">
@@ -108,7 +108,7 @@ export function ProcessPage() {
               {CHECKLIST.map((item, i) => (
                 <Reveal key={item.title} delay={0.1 + i * 0.06}>
                   <li className="flex items-start gap-4">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gold text-ink">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand text-white">
                       <Check className="size-5" aria-hidden="true" />
                     </span>
                     <div>

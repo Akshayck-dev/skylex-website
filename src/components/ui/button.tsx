@@ -3,18 +3,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-[13px] font-semibold uppercase tracking-[0.16em] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-[13px] font-semibold uppercase tracking-[0.16em] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        gold: "bg-gold text-ink hover:bg-goldsoft",
-        dark: "bg-ink text-cream hover:bg-coal",
+        gold: "bg-brand text-white hover:bg-teal",
+        dark: "bg-ink text-white hover:bg-brand",
         outline:
-          "border border-ink/25 bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-cream",
+          "border border-ink/25 bg-transparent text-ink hover:border-brand hover:bg-brand hover:text-white",
         outlineLight:
-          "border border-cream/40 bg-transparent text-cream hover:border-gold hover:text-gold",
-        ghost: "text-ink hover:text-golddeep",
-        ghostLight: "text-cream hover:text-gold",
+          "border border-white/40 bg-transparent text-white hover:border-tealbright hover:text-tealbright",
+        ghost: "text-ink hover:text-brand",
+        ghostLight: "text-white hover:text-tealbright",
       },
       size: {
         default: "h-12 px-8",
