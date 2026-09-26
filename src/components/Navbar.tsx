@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Mail, Menu, Phone, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { CONTACT, NAV_LINKS } from "../data/content";
 import { cn } from "../lib/utils";
 import { getLenis } from "../lib/lenis";
@@ -46,20 +46,6 @@ export function Navbar() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50">
-        {/* Top bar */}
-        <div className="bg-branddeep text-white">
-          <div className="mx-auto flex h-9 w-full max-w-shell items-center justify-between px-6 text-[11px] tracking-[0.08em] md:px-10 lg:px-16">
-            <p className="hidden items-center gap-2 text-white/70 sm:flex">
-              <Mail className="size-3.5 text-tealbright" aria-hidden="true" />
-              {CONTACT.email}
-            </p>
-            <p className="flex items-center gap-2 text-white/70">
-              <Phone className="size-3.5 text-tealbright" aria-hidden="true" />
-              {CONTACT.phone}
-            </p>
-          </div>
-        </div>
-
         {/* Main bar */}
         <div
           className={cn(

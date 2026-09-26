@@ -10,7 +10,7 @@ interface PageHeroProps {
 /** Light inner-page banner — mist band, Forum heading, breadcrumb. */
 export function PageHero({ title, sub, crumb }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-mist pt-[112px]">
+    <section className="relative overflow-hidden bg-mist pt-[76px]">
       {/* faint watermark */}
       <span
         aria-hidden="true"

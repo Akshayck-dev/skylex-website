@@ -38,7 +38,7 @@ export function Hero() {
 
   return (
     <section
-      className="relative overflow-hidden bg-mist pt-[112px]"
+      className="relative overflow-hidden bg-mist pt-[76px]"
       aria-label="Introduction"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
